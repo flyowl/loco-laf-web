@@ -14,9 +14,9 @@ import Ajv from 'ajv';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { DataSourceType } from '../../types';
 import { generateClassName } from '../../utils/misc';
-import {createApimanager } from 'src/apis/apimanager'
+// import {createApimanager  } from 'src/apis/apimanager'
 
-import { ListTreeDataType } from 'src/apis/block';
+import {  low_typed_tree ,low_api} from 'src/apis/lafapi';
 
 
 // import './import-plugins/code.scss';
@@ -104,9 +104,9 @@ export class DataSourceExport extends PureComponent<DataSourceExportProps, DataS
   };
 
   const getdatatype = async (url: string) => {
-    const schema =  await ListTreeDataType()
+    const schema =  await low_typed_tree()
       this.setState({
-        blocktypedata:schema.data
+        blocktypedata:schema
       })
   };
 
@@ -142,7 +142,7 @@ export class DataSourceExport extends PureComponent<DataSourceExportProps, DataS
   save = async (values:any) => {
     values.schema = JSON.stringify(this.deriveValue(this.props.dataSourceList), null, 2)
 
-    createApimanager(values)
+    low_api(values)
       Message.success('创建成功');
   };
 
@@ -185,8 +185,8 @@ export class DataSourceExport extends PureComponent<DataSourceExportProps, DataS
             <FormItem name="description" label="说明" required requiredMessage="详细说明!">
             <Input.TextArea placeholder="详细说明" aria-label="description" />
             </FormItem>
-            <FormItem name="typed" label="类型选择" requiredMessage="请选择!">
-            <Select
+            <FormItem name="typed_id" label="类型选择" requiredMessage="请选择!">
+            <TreeSelect
                 onChange={this.handleChange}
                 hasClear={true}
                 style={{ width: '100%' }}

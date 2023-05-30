@@ -7,7 +7,7 @@ import { releaseSaveSchema,getHisySchema,getOneSchema,DelOneSchema,getAssetForAp
 import { OneMenus,listMenus, listAppchoice } from 'src/apis/menu';
 import {sys_menuList,low_schema_history_detail,low_schema_history_list,low_schema_history_delete,low_schema_history_detail_id
   ,low_typed_tree,low_block_create,
-  low_schema_release,
+  low_schema_release,low_block_search
 } from 'src/apis/lafapi'
 import { createAxiosFetchHandler } from 'src/plugins/axiosfatchhandler';
 import Apphelp from 'src/utils/public';
@@ -38,8 +38,8 @@ function setupConfig() {
   // 区块配置
   config.set('apiList', {
     block: {
-
-      listBlocks,
+      low_block_search,
+  
       low_block_create,
       low_typed_tree,
     },

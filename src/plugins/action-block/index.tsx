@@ -20,6 +20,7 @@ interface SaveAsBlockProps {
 
 function checkBlockAPI() {
   const apiList = config.get('apiList') || {};
+  
   const { block: blockAPI } = apiList;
 
   if (!blockAPI?.low_block_create) {

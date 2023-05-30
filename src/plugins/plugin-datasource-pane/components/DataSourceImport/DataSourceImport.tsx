@@ -14,7 +14,7 @@ import type { editor } from 'monaco-editor';
 import React, { PureComponent } from 'react';
 import { ApimanagerTree } from 'src/apis/apimanager';
 // import './import-plugins/code.scss';
-import { ListTreeDataType } from 'src/apis/block';
+import {  low_typed_tree ,low_api_choice} from 'src/apis/lafapi';
 import { DataSourcePaneImportPluginComponentProps } from '../../types';
 
 const { Row, Col } = Grid;
@@ -159,16 +159,16 @@ export class DataSourceImport extends PureComponent<DataSourceImportProps, DataS
 
 
   getdatatype = async (url: string) => {
-    const schema = await ListTreeDataType();
+    const schema = await low_typed_tree();
     this.setState({
-      datasource: schema.data,
+      datasource: schema,
     });
   };
 
   getapidata = async (typed: string) => {
-    const schema = await ApimanagerTree({ typed: typed });
+    const schema = await low_api_choice({ typed_id: typed });
     this.setState({
-      apisource: schema.data,
+      apisource: schema,
     });
   };
 
@@ -181,7 +181,7 @@ export class DataSourceImport extends PureComponent<DataSourceImportProps, DataS
   };
   handleChange2 = (value: any, data: any) => {
     this.state.apisource.map((api: any, index: number) => {
-      if (value == api.id) {
+      if (value == api._id) {
           // console.log(this.editMonacoRef)
           // this.send({
           //   type: 'SHOW_EXPORT_DETAIL',
@@ -208,8 +208,8 @@ export class DataSourceImport extends PureComponent<DataSourceImportProps, DataS
         <Row gutter={10}>
           <Col span="12">
             <div className="demo-col-inset">
-              <Select
-                // treeDefaultExpandAll
+              <TreeSelect
+                treeDefaultExpandAll
                 hasClear
                 placeholder="类型选择"
                 onChange={this.handleChange}
@@ -220,7 +220,7 @@ export class DataSourceImport extends PureComponent<DataSourceImportProps, DataS
           </Col>
           <Col span="12">
             <div className="demo-col-inset">
-              <TreeSelect
+              <Select
               showSearch
                 
                 hasClear
