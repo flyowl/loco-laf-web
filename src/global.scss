@@ -1,0 +1,44 @@
+.loading-style{
+    width: 100%;
+    height:calc(100vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // background-color: white;
+
+}
+
+
+
+.vditor-content{
+    width: 100%;
+    p {
+        letter-spacing: 2px;
+        font-size: 14px;
+        word-spacing: 2px;
+    }
+}
+
+.vditor-reset{
+    strong{
+        font-size: 14px;
+        word-spacing: 2px;
+        letter-spacing: 2px;
+
+    }
+    p{
+        font-size: 14px;
+        word-spacing: 2px;
+        letter-spacing: 2px;
+
+    }
+}
+
+.vditor-toolbar{
+    width: 100%;
+}
+
+.next-form-item-help{
+    color:#ff3000;
+}
+

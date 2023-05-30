@@ -1,0 +1,46 @@
+.low-avatar-user {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+.iframe-hack {
+  width: 100%;
+  .rectangular {
+    width: 32px;
+    height: 32px;
+    background: rgba(0, 0, 0, 0.04);
+  }
+
+  .next-shell-brand .next-shell-aside.next-shell-navigation {
+    width: 200px;
+  }
+}
+
+.nav-menu {
+  width: 200px;
+}
+.nav-name {
+  margin-left: 10px;
+  width: 157px;
+
+  a:link,
+  a:visited {
+    font-size: 16px;
+    color: #ffffff;
+  }
+}
+.app_setting {
+  flex: 1;
+  display: flex;
+  text-align: right;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-shell-navigation .next-aside-navigation {
+  width: 200px;
+}

@@ -1,0 +1,4 @@
+name: update-block
+methods:
+  - POST
+tags: []

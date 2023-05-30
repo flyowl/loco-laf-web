@@ -1,0 +1,6 @@
+name: public
+methods:
+  - GET
+  - POST
+tags:
+  - public

@@ -1,0 +1,5 @@
+name: low_typed_tree
+methods:
+  - GET
+tags:
+  - lowcode

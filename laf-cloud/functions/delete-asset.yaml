@@ -1,0 +1,4 @@
+name: delete-asset
+methods:
+  - DELETE
+tags: []

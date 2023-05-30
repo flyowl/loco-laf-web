@@ -1,0 +1,4 @@
+name: update-asset
+methods:
+  - POST
+tags: []

@@ -1,0 +1,89 @@
+{
+  "packages": [
+    {
+      "package": "moment",
+      "version": "2.24.0",
+      "urls": [
+        "https://g.alicdn.com/mylib/moment/2.24.0/min/moment.min.js"
+      ],
+      "library": "moment"
+    },
+    {
+      "package": "lodash",
+      "library": "_",
+      "urls": [
+        "https://g.alicdn.com/platform/c/lodash/4.6.1/lodash.min.js"
+      ]
+    },
+    {
+      "title": "NextTable",
+      "package": "NextTable",
+      "version": "1.0.1",
+      "urls": [
+        "https://g.alicdn.com/fusion-platform/pro-table/1.0.1/next-table.js",
+        "https://g.alicdn.com/fusion-platform/pro-table/1.0.1/next-table.css"
+      ],
+      "library": "NextTable"
+    },
+    {
+      "package": "@alilc/lowcode-materials",
+      "version": "1.0.3",
+      "library": "AlilcLowcodeMaterials",
+      "urls": [
+        "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/render/default/view.js",
+        "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/render/default/view.css"
+      ],
+      "editUrls": [
+        "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/view.js",
+        "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/view.css"
+      ],
+      "advancedUrls": {
+        "default": [
+          "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/render/default/view.js",
+          "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/render/default/view.css"
+        ]
+      },
+      "advancedEditUrls": {}
+    }
+  ],
+  "components": [
+    {
+      "exportName": "AlilcLowcodeMaterialsMeta",
+      "npm": {
+        "package": "@alilc/lowcode-materials",
+        "version": "1.0.3"
+      },
+      "url": "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/meta.js",
+      "urls": {
+        "default": "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/meta.js",
+        "design": "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/meta.design.js"
+      },
+      "advancedUrls": {
+        "default": [
+          "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/meta.js"
+        ],
+        "design": [
+          "https://alifd.alicdn.com/npm/@alilc/lowcode-materials@1.0.3/build/lowcode/meta.design.js"
+        ]
+      }
+    }
+  ],
+  "sort": {
+    "groupList": [
+      "精选组件",
+      "原子组件"
+    ],
+    "categoryList": [
+      "通用",
+      "导航",
+      "信息输入",
+      "信息展示",
+      "信息反馈"
+    ]
+  },
+  "groupList": [
+    "精选组件",
+    "原子组件"
+  ],
+  "ignoreComponents": {}
+}

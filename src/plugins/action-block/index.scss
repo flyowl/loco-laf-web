@@ -1,0 +1,16 @@
+.block-screenshot {
+  background: gainsboro;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+
+  img {
+    max-width: 80%;
+  }
+}
+
+.edit-button {
+  margin-left: 8px;
+  margin-right: 8px;
+}

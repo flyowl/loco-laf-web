@@ -1,0 +1,4 @@
+name: create-asset
+methods:
+  - POST
+tags: []

@@ -1,0 +1,5 @@
+name: sys_menu
+methods:
+  - GET
+tags:
+  - system

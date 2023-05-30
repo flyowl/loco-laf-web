@@ -1,0 +1,5 @@
+name: low_api_detail
+methods:
+  - GET
+tags:
+  - lowcode
