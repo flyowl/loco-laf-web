@@ -79,11 +79,11 @@ export default async function registerPlugins() {
 
         //获取默认的数据
         // const schema = await getPageSchema(1);
-        const schema = await low_schemaDetail({});
+        const res = await low_schemaDetail({});
 
-
+        const data = JSON.parse(res.schema)
         // 加载 schema
-        project.openDocument(schema);
+        project.openDocument(data.componentsTree[0]);
       },
     };
   };

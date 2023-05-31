@@ -31,15 +31,21 @@ const PortalRenderer = (props: PortalRendererProps) => {
   // 获取params 的get参数ß
   const {schemaid} = useParams<{ id: string }>();
 
-  const [previousSchemaUrl, setPreviousSchemaUrl] = useState(schemaUrl);
+  const [previousSchemaUrl, setPreviousSchemaUrl] = useState("/"+schemaUrl);
   const [assets, setAssets] = useState();
   const [schema, setSchema] = useState(propSchema);
   const [loadingstatus, setLoading] = useState(true);
   const [components, setComponents] = useState();
   const fetchpathSchema = async (url: string) => {
-    const schema = propSchema ? propSchema : await getPathSchema(url);
-    setSchema(schema.schema);
+
+
+    const res = propSchema ? propSchema : await low_schemaDetail({path:url});
+      const data = JSON.parse(res.schema)
+     
+    setSchema(data);
+
     setLoading(false)
+    
   };
 
   const getAssets = async () =>{
@@ -49,21 +55,26 @@ const PortalRenderer = (props: PortalRendererProps) => {
 
   }
   const fetchSchema = async (url: string) => {
-    const schema = propSchema ? propSchema : await getFullSchemaByUrl(url);
+    const schema = propSchema ? propSchema : await low_schemaDetail({path:url});
+    
     setSchema(schema.schema);
     setLoading(false)
 
   };
   const fetchSchemaOne = async (id: string) => {
     const schema = propSchema ? propSchema : await low_schema_history_detail_id(id);
+    
     setSchema(JSON.parse(schema.schema));
     setLoading(false)
   };
 
   const fetchReleaseSchemaOne = async (id: Number) => {
-    const schema = propSchema ? propSchema : await low_schemaDetail({menu_id:id});
+    const res = propSchema ? propSchema : await low_schemaDetail({menu_id:id});
+    const data = JSON.parse(res.schema)
+    console.log(res)
 
-    setSchema(JSON.parse(schema.schema));
+
+    setSchema(data);
     setLoading(false)
   };
 
@@ -73,7 +84,7 @@ const PortalRenderer = (props: PortalRendererProps) => {
     // 根据不同的类型获取不同的url进行返回
     if (type == 'defaultmenu') {
       // 获取登入页面
-      fetchpathSchema(schemaUrl);
+      fetchpathSchema("/"+schemaUrl);
     } else if (type == 'login') {
       localStorage.removeItem('Authorization')
       // 根据url路径获取登入页面菜单
@@ -89,7 +100,8 @@ const PortalRenderer = (props: PortalRendererProps) => {
 
   useEffect(() => {
     if (assets && schema) {
-      
+
+
       setComponents(undefined);
       getComponents();
     }
@@ -99,6 +111,8 @@ const PortalRenderer = (props: PortalRendererProps) => {
     const { packages } = assets;
     const componentsMap: any = {};
     const { componentsMap: componentsMapArray } = schema;
+    
+    console.log(componentsMapArray)
     componentsMapArray.forEach((component: any) => {
       componentsMap[component.componentName] = component;
     });

@@ -11,14 +11,20 @@ export default async function (ctx: FunctionContext) {
   if (id) {
 
     const data = await SelectDetailSchema(id)
-    console.log(data)
     return Response.ok(data)
 
   }
   if (path) {
+    const { data: data } = await DB.collection("sys_menu")
+      .where({ path: path }).field({ _id: 1 })
+      .getOne()
+    const { data: data2 } = await DB.collection(DB_NAME)
+      .where({ menu_id: data._id })
+      .getOne()
 
+
+    return Response.ok(data2)
   }
-  console.log(menu_id)
 
   if (!menu_id || menu_id == "") {
     const data = await selectDefauleSchema()

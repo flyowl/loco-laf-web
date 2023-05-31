@@ -2,7 +2,8 @@ import { Loading, Nav, Search, Shell, Icon, Dropdown } from '@alifd/next';
 import * as React from 'react';
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Logout } from 'src/apis/Login';
-import { allDictionary, listApp, list_Route_Menus } from 'src/apis/menu';
+import { allDictionary, list_Route_Menus } from 'src/apis/menu';
+import  { sys_menuList } from 'src/apis/lafapi'
 import { getUserInfo } from 'src/apis/user';
 import { delTreeData } from 'src/utils';
 import Footer from './Footer';
@@ -79,27 +80,27 @@ const App = () => {
   const [device, setDevice] = useState(getDevice(NaN));
   const [files, setFiles] = useState([]);
   const [app, setApp] = useState({
-    appName: '低代码脚手架',
-    appWidth:'200px',
-    color: '#5584ff',
-    titleSize: '18px',
-    menuType: 'primary',
-    navType: 'dark',
-
-    header_isShow: true, //header是否显示
-    header_App_isShow: true,
-    header_search: false, // 查询是否显示
-    header_isName: true, // 名称是否显示
-    header_isMenu: true, // 菜单是否显示
-    header_isfixed: true, //是否固定按钮
-    leftNav_isShow: false,
-    header_isMessage:true,
-    leftNav_marginTop: '50px',
-    leftNav_Group: false,
-    header_isFoor: false,
-    foor_Title:'',
-    foor_Enterprise:'',
-  });
+    "appName": "低代码脚手架",
+    "appWidth": "200px",
+    "color": "#5584ff",
+    "titleSize": "18px",
+    "menuType": "normal",
+    "navType": "light",
+    "header_isShow": true,
+    "header_search": false,
+    "header_isName": true,
+    "header_isMenu": false,
+    "header_isfixed": true,
+    "leftNav_isShow": true,
+    "header_isMessage": true,
+    "leftNav_marginTop": "5px",
+    "leftNav_Group": false,
+    "header_isFoor": true,
+    "foor_Title": "dfgd",
+    "foor_Enterprise": "dfgfdgdfg",
+    "isFoor": true,
+    "header_App_isShow": false
+});
 
   const [load, setload] = useState(true);
 
@@ -116,7 +117,7 @@ const App = () => {
     const deviceWidth = window.innerWidth
     if (deviceWidth < 680){
       data.header_isShow = true //header是否显示
-      data.header_App_isShow=false
+      // data.header_App_isShow=false
       data.header_search= false // 查询是否显示
       data.header_isName= false // 名称是否显示
       data.header_isMenu= false // 菜单是否显示
@@ -148,79 +149,109 @@ const App = () => {
     startallDictionary();
   }
   async function getFiles() {
-    const parms: any = {};
-    await listApp({ appPath: '/' + url.split('/')[0] }).then((res: any) => {
-      if (res.code == 2000) {
-        parms.app = res.data.id;
-        let data = JSON.parse(res.data.theme);
-        if (data){
-          processApp(data,res.data.appName)
-          // setApp(data);
-        }
-        setload(false);
-      }
-    });
-    const files = await list_Route_Menus(parms);
+    // const parms: any = {};
+    // await listApp({ appPath: '/' + url.split('/')[0] }).then((res: any) => {
+    //   if (res.code == 2000) {
+    //     parms.app = res.data.id;
+    //     let data = JSON.parse(res.data.theme);
+    //     if (data){
+    //       processApp(data,res.data.appName)
+    //       // setApp(data);
+    //     }
+    //     setload(false);
+    //   }
+    // });
+            setload(false);
+
+    const files = await sys_menuList();
+    
     setFiles(files);
   }
   useEffect(() => {
     getFiles();
-    getUser();
+    // getUser();
   }, []);
 
-  const filedata = delTreeData(files, 'id', 'parent', 'childrenList');
+  // const filedata = delTreeData(files, 'id', 'parent', 'childrenList');
   // 数据渲染
+  // const renderMenuData = (data: any) => {
+  //   return data.map((item: any) => {
+  //     if (item.visible) {
+  //       if (item.is_catalog) {
+  //         return (
+  //           <SubNav key={item._id} label={item.name} icon={item.icon}>
+  //             {renderMenuData(item.childrenList)}
+  //           </SubNav>
+  //         );
+  //       }
+  //       if (item.is_link) {
+  //         return (
+  //           <Item icon={item.icon}>
+  //             <Link to={item.web_path}>{item.name} </Link>
+  //           </Item>
+  //         );
+  //       }
+  //       return (
+  //         <Item icon={item.icon}>
+  //           <Link to={item.web_path}>{item.name}</Link>
+  //         </Item>
+  //       );
+  //     }
+  //   });
+  // };
   const renderMenuData = (data: any) => {
+    
+    console.log(data)
     return data.map((item: any) => {
-      if (item.visible) {
-        if (item.is_catalog) {
-          return (
-            <SubNav key={item.id} label={item.name} icon={item.icon}>
-              {renderMenuData(item.childrenList)}
-            </SubNav>
-          );
-        }
-        if (item.is_link) {
+      if (item.parentId =="-1") {
+        return (
+          <SubNav key={item._id} label={item.name} icon={item.icon}>
+            {renderMenuData(item.children)}
+          </SubNav>
+        );
+      }
+      if (item.path) {
           return (
             <Item icon={item.icon}>
-              <Link to={item.web_path}>{item.name} </Link>
+              <Link to={item.path}>{item.name} </Link>
             </Item>
           );
         }
+
         return (
-          <Item icon={item.icon}>
-            <Link to={item.web_path}>{item.name}</Link>
+          <Item icon={item.icon} key={item._id}>
+            {item.name}
           </Item>
         );
-      }
+      
     });
   };
 
-  const renderMenuData2 = (data: any) => {
-    return data.map((item: any) => {
-      if (item.visible) {
-        if (item.is_catalog) {
-          return (
-            <Group key={item.id} label={item.name}>
-              {renderMenuData(item.childrenList)}
-            </Group>
-          );
-        }
-        if (item.is_link) {
-          return (
-            <Item icon={item.icon}>
-              <Link to={item.web_path}>{item.name} </Link>
-            </Item>
-          );
-        }
-        return (
-          <Item icon={item.icon}>
-            <Link to={item.web_path}>{item.name}</Link>
-          </Item>
-        );
-      }
-    });
-  };
+  // const renderMenuData2 = (data: any) => {
+  //   return data.map((item: any) => {
+  //     if (item.visible) {
+  //       if (item.is_catalog) {
+  //         return (
+  //           <Group key={item.id} label={item.name}>
+  //             {renderMenuData(item.childrenList)}
+  //           </Group>
+  //         );
+  //       }
+  //       if (item.is_link) {
+  //         return (
+  //           <Item icon={item.icon}>
+  //             <Link to={item.web_path}>{item.name} </Link>
+  //           </Item>
+  //         );
+  //       }
+  //       return (
+  //         <Item icon={item.icon}>
+  //           <Link to={item.web_path}>{item.name}</Link>
+  //         </Item>
+  //       );
+  //     }
+  //   });
+  // };
 
   const renderNav = (type: any) => {
     return (
@@ -234,7 +265,7 @@ const App = () => {
         direction={type}
         openMode="single"
       >
-        {filedata.length ? renderMenuData(filedata) : null}
+        {files.length ? renderMenuData(files) : null}
       </Nav>
     );
   };
@@ -262,7 +293,7 @@ const App = () => {
                 <span>{app?.appName}</span>
               </span>
             )}
-
+{/* 
             {app.header_App_isShow && (
               <Dropdown
                 autoClose
@@ -276,7 +307,7 @@ const App = () => {
               >
                 <BlockCard></BlockCard>
               </Dropdown>
-            )}
+            )} */}
 
             {app.header_isMenu ? renderNav('hoz') : null}
           </Shell.Branding>
@@ -314,7 +345,7 @@ const App = () => {
                   openMode="single"
                   aria-label="global navigation"
                 >
-                  {filedata.length ? renderMenuData2(filedata) : null}
+                  {files.length ? renderMenuData(files) : null}
                 </Nav>
               </div>
             ) : (

@@ -18,7 +18,7 @@ export default async function (ctx: FunctionContext) {
 
   console.log(data)
 
-  let data2 = data.map((item) => ({ value: item._id, label: item.name, item }))
+  let data2 = data.map((item) => ({ value: item._id, label: item.name, ...item }))
   return Response.ok(data2)
   // 接口权限校验
 

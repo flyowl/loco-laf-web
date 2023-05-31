@@ -20,10 +20,10 @@ export const low_schemaDetail = async (data: any) => {
       params: data
     }
   )
-  if (!data.menu_id) {
-    const data = JSON.parse(res.data.schema)
-    return data.componentsTree[0];
-  }
+  // if (!data.menu_id) {
+  //   const data = JSON.parse(res.data.schema)
+  //   return data.componentsTree[0];
+  // }
   return res.data
 
 }
@@ -46,7 +46,6 @@ export const low_assetDetail = async () => {
 export const sys_menuList = async () => {
   const url = `sys_menu_route`;
   const res = await service.get(url);
-  console.log("meun", res)
   return res.data
 
 }
