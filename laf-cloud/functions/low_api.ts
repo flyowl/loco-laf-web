@@ -10,7 +10,7 @@ const DB_NAME = "sys_api"
 
 
 export default async function (ctx: FunctionContext) {
-  const { userId } = userDetails(ctx)
+  const userId = ctx.user.userId
 
   // if (!userId) {
   // 登入校验

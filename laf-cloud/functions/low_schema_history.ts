@@ -9,12 +9,9 @@ const DB_NAME = "sys_schema_history"
 
 
 export default async function (ctx: FunctionContext) {
-  const { userId, type } = userDetails(ctx)
-  console.log(userId, type)
+  const userId = ctx.user.userId
 
-  // if (!userId) {
-  //   return Response.failed('非法请求', 401)
-  // }
+
   if (ctx.method == 'GET') {
     // 接口权限校验
 

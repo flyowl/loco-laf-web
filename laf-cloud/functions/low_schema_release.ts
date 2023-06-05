@@ -11,9 +11,8 @@ const DB_NAME = {
   sys_menu: "sys_menu"
 }
 export default async function (ctx: FunctionContext) {
-  const { userId, type } = userDetails(ctx)
 
-
+  const userId = ctx.user.userId
 
   const { menu_id, schema_history_id } = ctx.body
 

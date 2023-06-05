@@ -81,7 +81,7 @@ const App = () => {
   const [files, setFiles] = useState([]);
   const [app, setApp] = useState({
     "appName": "低代码脚手架",
-    "appWidth": "200px",
+    // "appWidth": "200px",
     "color": "#5584ff",
     "titleSize": "18px",
     "menuType": "normal",
@@ -92,12 +92,13 @@ const App = () => {
     "header_isMenu": false,
     "header_isfixed": true,
     "leftNav_isShow": true,
+    "leftNav_IconOnly":true,
     "header_isMessage": true,
     "leftNav_marginTop": "5px",
     "leftNav_Group": false,
     "header_isFoor": true,
     "foor_Title": "dfgd",
-    "foor_Enterprise": "dfgfdgdfg",
+    "foor_Enterprise": "LOCO低代码",
     "isFoor": true,
     "header_App_isShow": false
 });
@@ -201,7 +202,6 @@ const App = () => {
   // };
   const renderMenuData = (data: any) => {
     
-    console.log(data)
     return data.map((item: any) => {
       if (item.parentId =="-1") {
         return (
@@ -209,6 +209,9 @@ const App = () => {
             {renderMenuData(item.children)}
           </SubNav>
         );
+      }
+      if (item.visible == "0"){
+        return
       }
       if (item.path) {
           return (
@@ -264,6 +267,7 @@ const App = () => {
         hasArrow={false}
         direction={type}
         openMode="single"
+        
       >
         {files.length ? renderMenuData(files) : null}
       </Nav>
@@ -289,7 +293,7 @@ const App = () => {
           <Shell.Branding>
             {/* <div className="çç"></div> */}
             {app.header_isName && (
-              <span className="nav-name" style={{ color: app.color, fontSize: app.titleSize,width:app.appWidth }}>
+              <span className="nav-name" style={{ color: app.color, fontSize: app.titleSize }}>
                 <span>{app?.appName}</span>
               </span>
             )}

@@ -55,9 +55,10 @@ const PortalRenderer = (props: PortalRendererProps) => {
 
   }
   const fetchSchema = async (url: string) => {
-    const schema = propSchema ? propSchema : await low_schemaDetail({path:url});
-    
-    setSchema(schema.schema);
+    const res = propSchema ? propSchema : await low_schemaDetail({path:url});
+    const data = JSON.parse(res.schema)
+
+    setSchema(data);
     setLoading(false)
 
   };
@@ -71,7 +72,6 @@ const PortalRenderer = (props: PortalRendererProps) => {
   const fetchReleaseSchemaOne = async (id: Number) => {
     const res = propSchema ? propSchema : await low_schemaDetail({menu_id:id});
     const data = JSON.parse(res.schema)
-    console.log(res)
 
 
     setSchema(data);
@@ -86,7 +86,7 @@ const PortalRenderer = (props: PortalRendererProps) => {
       // 获取登入页面
       fetchpathSchema("/"+schemaUrl);
     } else if (type == 'login') {
-      localStorage.removeItem('Authorization')
+      // localStorage.removeItem('Authorization')
       // 根据url路径获取登入页面菜单
       fetchSchema(setUrl);
     }else if (type == 'params'){
@@ -112,7 +112,6 @@ const PortalRenderer = (props: PortalRendererProps) => {
     const componentsMap: any = {};
     const { componentsMap: componentsMapArray } = schema;
     
-    console.log(componentsMapArray)
     componentsMapArray.forEach((component: any) => {
       componentsMap[component.componentName] = component;
     });

@@ -12,7 +12,7 @@ const DB_NAME = {
 }
 
 export async function main(ctx: FunctionContext) {
-  const { userId, type } = userDetails(ctx)
+  const userId = ctx.user.userId
 
   // if (!userId) {
   //   return Response.failed('非法请求', 401)

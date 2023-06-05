@@ -1,4 +1,6 @@
 import { Tag,Notification } from '@alifd/next';
+import { Cloud } from "laf-client-sdk";
+import {baseUrl,dbProxyUrl,environment} from 'src/apis/config'
 
 export const openNotification = (type: any, content: string) => {
   Notification.open({
@@ -7,7 +9,6 @@ export const openNotification = (type: any, content: string) => {
     type,
   });
 };
-
 // 平级转树结构
 /* treeArr 基础数据
  * id 唯一id
@@ -191,3 +192,11 @@ export function setUrl(url:string,title:string){
     history.pushState({url: url, title: document.title}, document.title, url)
 }
 
+
+
+export const cloud = new Cloud({
+  baseUrl: baseUrl,
+  dbProxyUrl: dbProxyUrl,
+  getAccessToken: () => localStorage.getItem("Authorization"),
+  environment:environment,
+});

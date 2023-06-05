@@ -6,8 +6,8 @@ const DB_NAME = "sys_schema"
 
 
 export default async function (ctx: FunctionContext) {
+
   const { id, menu_id, path } = ctx.query
-  console.log(id)
   if (id) {
 
     const data = await SelectDetailSchema(id)

@@ -52,7 +52,10 @@ export const GetDictionary = (info:string,value:any=null) => {
   }
 };
 export const GetEditInfo = (info:string) => {
-  const data:Object = JSON.parse(localStorage.getItem('system_info')||"")
-  return data[info] 
+  if (localStorage.getItem('system_info')){
+    const data:Object = JSON.parse(localStorage.getItem('system_info')||"")
+    return data[info] 
+  }
+return false
 }
 

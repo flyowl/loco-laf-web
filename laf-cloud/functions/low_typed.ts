@@ -10,8 +10,8 @@ const DB_NAME = "sys_typed"
 
 
 export default async function (ctx: FunctionContext) {
-  const { userId, type } = userDetails(ctx)
-  console.log(userId, type)
+  // const { userId, type } = userDetails(ctx)
+  const userId = ctx.user.userId
 
   // if (!userId) {
   // 登入校验

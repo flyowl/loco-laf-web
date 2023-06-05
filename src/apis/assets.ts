@@ -212,7 +212,7 @@ export const getrenderSchema = async (path: string) => {
 
   export const tempListSchema = async (query:any) => {
 
-    let url = `/api/lowcode/template/Plubiclist/`;  
+    let url = `https://lowcode.itq168.com/api/lowcode/template/Plubiclist/`;  
     const cacheurl = GetEditInfo("publicTemplateUrl")
     if (cacheurl){
       url = cacheurl+ 'Plubiclist/'
@@ -230,7 +230,7 @@ export const getrenderSchema = async (path: string) => {
 
 
   export const tempPubileSchema = async () => {
-    let url = `/api/system/dictionary/get_dict_template/`;  
+    let url = `https://lowcode.itq168.com/api/system/dictionary/get_dict_template/`;  
     let cacheurl = GetEditInfo("publicTempDictUrl")
     if (cacheurl){
       url = cacheurl
@@ -248,7 +248,7 @@ export const getrenderSchema = async (path: string) => {
 
   export const tempDetailSchema = async (id:Number) => {
     
-    let url = `/api/lowcode/template/`+id +'/Publicretrieve/';  
+    let url = `https://lowcode.itq168.com/api/lowcode/template/`+id +'/Publicretrieve/';  
     let cacheurl = GetEditInfo("publicTemplateUrl")
 
     if (cacheurl){

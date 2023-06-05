@@ -170,7 +170,7 @@ const HeaderAvatar = (props: Props) => {
           <Form.Item label="名称显示:" name="header_isName">
           <Switch autoWidth   onChange={handleChange}/>
           </Form.Item>
-          <Form.Item label="APP显示:" name="header_App_isShow">
+          {/* <Form.Item label="APP显示:" name="header_App_isShow">
           <Switch autoWidth   onChange={handleChange}/>
           </Form.Item>
           <Form.Item label="APP宽度:" name="appWidth">
@@ -179,7 +179,7 @@ const HeaderAvatar = (props: Props) => {
                 addonTextAfter="px"
           onChange={handleChange} 
           />
-          </Form.Item>
+          </Form.Item> */}
           <Form.Item label="消息显示:" name="header_isMessage">
           <Switch autoWidth   onChange={handleChange}/>
           </Form.Item>
@@ -274,7 +274,7 @@ const HeaderAvatar = (props: Props) => {
           }
           
           <Menu className={styles.menu}>
-          {permission('lowcode:getschema') && (
+          {/* {permission('lowcode:getschema') && ( */}
             <Item>
             <Icon size="small" type="account" />{' '}
             <Link to="/editor.html" target={'_blank'}>
@@ -283,14 +283,14 @@ const HeaderAvatar = (props: Props) => {
           </Item>
           
 
-          )}
+          {/* )} */}
 
-            {permission('lowcode:Update') && (
+            {/* {permission('lowcode:Update') && ( */}
               <Item >
               <Icon size="small" type="set" /> 
               <a onClick={DialogOpen}>主题样式设置</a>
             </Item>
-            )}
+            {/* )} */}
 
             <Item>
               <Icon size="small" type="account" /> <Link to="/userinfo">个人设置</Link>

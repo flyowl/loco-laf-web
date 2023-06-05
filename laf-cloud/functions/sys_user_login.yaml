@@ -1,0 +1,4 @@
+name: sys_user_login
+methods:
+  - POST
+tags: []

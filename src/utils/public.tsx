@@ -8,7 +8,7 @@ import { GetDictionary } from 'src/apis/localStorageInfo';
 import { LoginApi } from 'src/apis/Login';
 import service, { del, post, put } from 'src/apis/request';
 import { createAxiosFetchHandler } from 'src/plugins/axiosfatchhandler';
-import { delTreeData, dict, getQueryString, loadjs,loadListJs, openNotification,permission,setUrl,downloadFileURLByIframe } from './index';
+import {cloud, delTreeData, dict, getQueryString, loadjs,loadListJs, openNotification,permission,setUrl,downloadFileURLByIframe } from './index';
 
 const setTag  = (data: any, value: any, tag: any = null)=>{
   switch (tag){
@@ -64,7 +64,8 @@ export const Apphelp = {
     downloadFile:downloadFileURLByIframe,
     // 登录
     setUrl:setUrl, //设置url地址 
-    setTag:setTag  //标签设置
+    setTag:setTag,  //标签设置
+    could:cloud
 
   },
 };

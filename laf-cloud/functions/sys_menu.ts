@@ -14,13 +14,7 @@ const DB_NAME = {
 }
 
 export async function main(ctx: FunctionContext) {
-  const { userId, type: client } = userDetails(ctx)
-  if (!userId) {
-    return Response.failed('非法请求', 401)
-  }
-  if (client !== 'admin') {
-    return Response.failed('非法请求', 401)
-  }
+  const userId = ctx.user.userId
   const { _id: menuId, type: menuType } = ctx.body
   const user = await selectOneByUserId(userId)
   if (!user) {

@@ -1,5 +1,4 @@
 import cloud from '@lafjs/cloud'
-import { userDetails } from '@/user-details'
 
 import { Response } from '@/global-response'
 
@@ -11,13 +10,8 @@ const cmd = DB.command
 const DB_NAME = "sys_block"
 
 export default async function (ctx: FunctionContext) {
-  const { userId, type } = userDetails(ctx)
-  console.log(userId, type)
+  const userId = ctx.user.userId
 
-  // if (!userId) {
-  // 登入校验
-  //   return Response.failed('非法请求', 401)
-  // }
   if (ctx.method == 'GET') {
     // 接口权限校验
     // 处理
