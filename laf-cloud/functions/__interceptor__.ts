@@ -6,7 +6,7 @@ export async function main(ctx: FunctionContext) {
   // console.log(ctx.request.path)
   // console.log(ctx.method)
   // 白名单，直接放行
-  const whiteList = ['/low_asset_detail', '/sys_user_login', '/low_schema_detail']
+  const whiteList = ['/low_asset_detail', '/sys_user_login', '/low_schema_detail', '/init-collection-data','/util']
   if (whiteList.includes(ctx.request.path)) {
     return true
   }

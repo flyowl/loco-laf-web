@@ -1,3 +1,4 @@
 name: model
 methods: []
-tags: []
+tags:
+  - public

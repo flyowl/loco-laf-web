@@ -1,0 +1,5 @@
+name: test04
+methods:
+  - GET
+tags:
+  - test

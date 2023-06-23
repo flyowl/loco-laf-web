@@ -1,0 +1,6 @@
+name: public_velidator
+methods:
+  - GET
+  - POST
+tags:
+  - test

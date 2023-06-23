@@ -1,6 +1,7 @@
 import { Button, MenuButton } from '@alifd/next';
 import { ILowCodePluginContext, material, plugins, project,config } from '@alilc/lowcode-engine';
 import AliLowCodeEngineExt from '@alilc/lowcode-engine-ext';
+
 import CodeEditor from '@alilc/lowcode-plugin-code-editor';
 import CodeGenPlugin from '@alilc/lowcode-plugin-code-generator';
 import ComponentsPane from '@alilc/lowcode-plugin-components-pane';
@@ -23,6 +24,9 @@ import {  low_schemaDetail,low_assetDetail,low_schema_history_save } from 'src/a
 // import LowcodePluginLocoPluginBlock from 'lowcode-plugin-loco-plugin-block';
 // import LowcodePluginLocoPluginPages from 'lowcode-plugin-loco-plugin-pages';
 // import LowcodePluginLocoPluginTemplate from 'lowcode-plugin-loco-plugin-template';
+// import AliLowCodeEngineExt from 'loco-lowcode-engine-ext';
+
+
 
 import LocoPluginDocuments from 'src/plugins/plugin-public/loco-plugin-documents/src/index';
 import LowcodePluginLocoPluginAi from 'src/plugins/plugin-public/loco-plugin-ai/src/index';

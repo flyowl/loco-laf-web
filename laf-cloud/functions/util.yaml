@@ -1,3 +1,4 @@
 name: util
 methods: []
-tags: []
+tags:
+  - public
