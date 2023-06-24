@@ -5,7 +5,7 @@ import './universal/global.scss';
 import { releasepreview } from 'src/universal/utils';
 import { tempListSchema, tempDetailSchema, tempPubileSchema } from 'src/apis/assets';
 import {
-  sys_menuList, low_schema_history_detail, low_schema_history_list, low_schema_history_delete, low_schema_history_detail_id
+  sys_menuList_edit, low_schema_history_detail, low_schema_history_list, low_schema_history_delete, low_schema_history_detail_id
   , low_typed_tree, low_block_create,
   low_schema_release, low_block_search
 } from 'src/apis/lafapi'
@@ -55,7 +55,7 @@ function setupConfig() {
     config.set('pageApi', {
       block: {
         low_schema_history_detail,
-        sys_menuList,
+        sys_menuList_edit,
       },
     });
   // 发布API

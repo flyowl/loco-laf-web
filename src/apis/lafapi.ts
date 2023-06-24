@@ -50,6 +50,14 @@ export const sys_menuList = async () => {
 
 }
 
+// 通过ID获取schema
+export const sys_menuList_edit = async () => {
+  const url = `sys_menu_route_edit`;
+  const res = await service.get(url);
+  return res.data
+
+}
+
 
 // 获取历史数据的最新数据
 export const low_schema_history_detail = async (id: string) => {
@@ -130,7 +138,7 @@ export const low_schema_history_delete = async (id: string) => {
 }
 // 根据ID获取数据
 export const low_schema_history_detail_id = async (id: string) => {
-  const url = `low_schema_history_detail?id=` + id;
+  const url = `low_schema_history_detail?menu_id=` + id;
   const res = await service(
     {
       url: url,
