@@ -1,0 +1,5 @@
+name: test_binji
+methods:
+  - GET
+tags:
+  - test

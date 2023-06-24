@@ -52,7 +52,7 @@ async function selectUserPermissionByRoleIds(roleIds: string[], menuId: string, 
     (menu: Menu) => menu.menuId
   )
   const { data: permissions } = await DB.collection(DB_NAME.SYS_MENU)
-    .where({ _id: cmd.in(menuIds), menuType: menuType })
+    .where({ menuType: menuType })
     .get()
   return buildTree(permissions)
 }

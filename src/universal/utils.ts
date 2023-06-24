@@ -7,7 +7,7 @@ export const preview = () => {
   // saveSchema();
   setTimeout(() => {
     const data = config.get('editordata');
-    window.open(`/render/${data.schemaid}/`);
+    window.open(`/render/${data.menuid}/`);
   }, 500);
   
 };

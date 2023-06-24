@@ -1,23 +1,8 @@
-/*
-公共函数位置
-*/
-import Joi from 'joi';
+import cloud from '@lafjs/cloud'
+import { validate, validatePut } from '@/public'
+import { sys_menu } from '@/model'
 
-
-// 测试
 export default async function (ctx: FunctionContext) {
-  const sys_menu = {
-    "name": Joi.string().default(null).allow(''),
-    "permission": Joi.string().default(null).allow(''),
-    "path": Joi.string().default(null).allow(''),
-    "parentId": Joi.string().default("-1"),
-    "icon": Joi.string().required().default("icon"),
-    "sortOrder": Joi.number().required().default(0),
-    "keepAlive": Joi.string().required().default("0"),
-    "menuType": Joi.string().required().default("0"),
-    "label": Joi.string().required().default(null),
-    "visible": Joi.string().required().default("0"),
-  }
 
   const b = {
     "visible": "1",
@@ -141,85 +126,83 @@ export default async function (ctx: FunctionContext) {
     "__level": 0,
     "__hidden": false
   }
+  // const { error, value } = await validate(test, b)
 
+  // console.log(error)
+  // console.log(value)
 
+  const db = new Database("sys_menu")
+  const { _id, ...data } = b
+  const [id, error] = await db.put(_id, sys_menu, data)
 
-  const { error, value } = await validatePut(sys_menu, b);
-  if (error) {
-    console.log(error.message)
-  } else {
-    console.log(value)
-    return value
-  }
+  // const id = await db.put("64964c43ed0171a2acb890b1", test, b)
 
-  console.log('Hello World')
+  // const id = await db.list(1, 10)
+  console.log(id)
+  console.log(error)
+
   return { data: 'hi, laf' }
 }
 
+class Database<T> {
+  private collectionName: string;
 
-async function validate(schema: any, jsonData: any) {
-  for (const key in jsonData) {
-    if (!schema.hasOwnProperty(key)) {
-      delete jsonData[key]
+  constructor(collectionName: string) {
+    this.collectionName = collectionName;
+  }
+
+  async get(id: string): Promise<T> {
+    const db = cloud.database();
+    const { data } = await db.collection(this.collectionName).doc(id).get();
+    return data ? data as T : null;
+  }
+  async list(page: number = 1, pageSize: number = 10, query: object = {}) {
+    const db = cloud.database();
+    console.log(page, pageSize, query)
+    const { data } = await db.collection(this.collectionName)
+      .where(query)
+      .skip((page - 1) * pageSize)
+      .limit(pageSize)
+      .get();
+    const { total } = await db.collection(this.collectionName)
+      .where(query)
+      .count();
+    const res = {
+      total: total,
+      page: page,
+      pageSize: total < pageSize ? total : pageSize,
+      data: data
     }
+    return res
   }
-  const userSchema = Joi.object(schema);
-  const { value, error } = userSchema.validate(jsonData);
-  return { error, value }
-}
 
-async function validatePut(schema: any, jsonData: any) {
-  for (const key in schema) {
-    if (!jsonData.hasOwnProperty(key)) {
-      delete schema[key]
+  async post(validatedata: T, data: T) {
+    const db = cloud.database();
+    const { error, value } = await validate(validatedata, data)
+    if (error) {
+      return [false, error.message]
     }
+    const { id, ok } = await db.collection(this.collectionName).add(value);
+    return [ok, ok ? id : null];
   }
-  for (const key in jsonData) {
-    if (!schema.hasOwnProperty(key)) {
-      delete jsonData[key]
+
+  async put(id: string, validatedata: T, data: T) {
+    const { error, value } = await validatePut(validatedata, data)
+    if (error) {
+      return [false, error.message]
     }
-  }
-  const userSchema = Joi.object(schema);
-  const { value, error } = userSchema.validate(jsonData);
-  return { error, value }
-}
-
-
-// 信息返回
-class Response<T> {
-  public code: number
-  public msg: string
-  public data: T
-
-  constructor(code: number, msg: string, data: T) {
-    this.code = code
-    this.msg = msg
-    this.data = data
+    const db = cloud.database();
+    const { ok } = await db.collection(this.collectionName).doc(id).update(value);
+    return [ok, null];
   }
 
-  public static ok<T = any>(data: T, msg: string = 'ok'): Response<T> {
-    return new Response<T>(2000, msg, data)
+  async del(id: string): Promise<boolean> {
+    const db = cloud.database();
+    const { ok } = await db.collection(this.collectionName).doc(id).remove();
+    return ok;
   }
-
-  public static failed(msg: string = 'error', code: number = 400) {
-    return new Response(code, msg, false)
-  }
-}
-
-
-// 树结构
-function findChildren(data, parentId) {
-  return data.filter(item => item.p_id === parentId)
-    .map(item => ({
-      ...item,
-      children: findChildren(data, item._id)
-    }));
 }
 
 export {
-  validate // 解决单表post数据问题
-  , validatePut  //解决单表put数据问题
-  , Response // 接口返回
-  , findChildren //树结构返回
-}
-
+  Database  // 单表操作
+};

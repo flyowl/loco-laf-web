@@ -1,0 +1,8 @@
+name: sys_menu_test
+methods:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+tags:
+  - test
