@@ -9,7 +9,7 @@ import {  getFullSchema as getFullSchemaByUrl,getSchema ,getPathSchema,getReleas
 import  Apphelp  from 'src/utils/public';
 import { injectComponents } from '@alilc/lowcode-plugin-inject';
 
-import {low_schema_history_detail_id,low_assetDetail,low_schemaDetail} from 'src/apis/lafapi';
+import {low_schema_history_menu_id,low_assetDetail,low_schemaDetail} from 'src/apis/lafapi';
 // import '../index'
 interface PortalRendererProps {
   type?: string;
@@ -25,7 +25,8 @@ const PortalRenderer = (props: PortalRendererProps) => {
 
 
   // 获取路径数据ß              
-  const schemaUrl = useParams()['*'] || 'welcome';
+  const schemaUrl = useParams()['*']|| "/";
+  console.log("==",schemaUrl)
   // 传去传递的参数
   const { type, setUrl, schema: propSchema } = props;
   // 获取params 的get参数ß
@@ -39,10 +40,9 @@ const PortalRenderer = (props: PortalRendererProps) => {
   const fetchpathSchema = async (url: string) => {
 
 
-    const res = propSchema ? propSchema : await low_schemaDetail({path:url});
-      const data = JSON.parse(res.schema)
-     
-    setSchema(data);
+    const res = propSchema ? propSchema : await low_schemaDetail({path:url});   
+    setAssets(res.assets)  
+    setSchema(JSON.parse(res.schema));
 
     setLoading(false)
     
@@ -56,30 +56,29 @@ const PortalRenderer = (props: PortalRendererProps) => {
   }
   const fetchSchema = async (url: string) => {
     const res = propSchema ? propSchema : await low_schemaDetail({path:url});
-    const data = JSON.parse(res.schema)
-
-    setSchema(data);
+    setAssets(res.assets)  
+    setSchema(JSON.parse(res.schema));
     setLoading(false)
 
   };
   const fetchSchemaOne = async (id: string) => {
-    const schema = propSchema ? propSchema : await low_schema_history_detail_id(id);
+    const res = propSchema ? propSchema : await low_schema_history_menu_id(id);
     
-    setSchema(JSON.parse(schema.schema));
+    setAssets(res.assets)  
+    setSchema(JSON.parse(res.schema));
+    
     setLoading(false)
   };
 
   const fetchReleaseSchemaOne = async (id: Number) => {
     const res = propSchema ? propSchema : await low_schemaDetail({menu_id:id});
-    const data = JSON.parse(res.schema)
-
-
-    setSchema(data);
+    setAssets(res.assets)  
+    setSchema(JSON.parse(res.schema));
     setLoading(false)
   };
 
   useEffect(() => {
-    getAssets();
+    // getAssets();
 
     // 根据不同的类型获取不同的url进行返回
     if (type == 'defaultmenu') {

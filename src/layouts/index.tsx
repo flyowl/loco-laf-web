@@ -76,7 +76,8 @@ const getDevice: IGetDevice = (width) => {
 };
 
 const App = () => {
-  const url = useParams()['*'] || 'welcome';
+  // const url = useParams()['*'] ||'background' ;
+
   const [device, setDevice] = useState(getDevice(NaN));
   const [files, setFiles] = useState([]);
   const [app, setApp] = useState({
@@ -150,56 +151,16 @@ const App = () => {
     startallDictionary();
   }
   async function getFiles() {
-    // const parms: any = {};
-    // await listApp({ appPath: '/' + url.split('/')[0] }).then((res: any) => {
-    //   if (res.code == 2000) {
-    //     parms.app = res.data.id;
-    //     let data = JSON.parse(res.data.theme);
-    //     if (data){
-    //       processApp(data,res.data.appName)
-    //       // setApp(data);
-    //     }
-    //     setload(false);
-    //   }
-    // });
             setload(false);
-
     const files = await sys_menuList();
     
     setFiles(files);
   }
   useEffect(() => {
     getFiles();
-    // getUser();
   }, []);
 
-  // const filedata = delTreeData(files, 'id', 'parent', 'childrenList');
-  // 数据渲染
-  // const renderMenuData = (data: any) => {
-  //   return data.map((item: any) => {
-  //     if (item.visible) {
-  //       if (item.is_catalog) {
-  //         return (
-  //           <SubNav key={item._id} label={item.name} icon={item.icon}>
-  //             {renderMenuData(item.childrenList)}
-  //           </SubNav>
-  //         );
-  //       }
-  //       if (item.is_link) {
-  //         return (
-  //           <Item icon={item.icon}>
-  //             <Link to={item.web_path}>{item.name} </Link>
-  //           </Item>
-  //         );
-  //       }
-  //       return (
-  //         <Item icon={item.icon}>
-  //           <Link to={item.web_path}>{item.name}</Link>
-  //         </Item>
-  //       );
-  //     }
-  //   });
-  // };
+
   const renderMenuData = (data: any) => {
     
     return data.map((item: any) => {
@@ -226,35 +187,10 @@ const App = () => {
             {item.name}
           </Item>
         );
-      
     });
   };
 
-  // const renderMenuData2 = (data: any) => {
-  //   return data.map((item: any) => {
-  //     if (item.visible) {
-  //       if (item.is_catalog) {
-  //         return (
-  //           <Group key={item.id} label={item.name}>
-  //             {renderMenuData(item.childrenList)}
-  //           </Group>
-  //         );
-  //       }
-  //       if (item.is_link) {
-  //         return (
-  //           <Item icon={item.icon}>
-  //             <Link to={item.web_path}>{item.name} </Link>
-  //           </Item>
-  //         );
-  //       }
-  //       return (
-  //         <Item icon={item.icon}>
-  //           <Link to={item.web_path}>{item.name}</Link>
-  //         </Item>
-  //       );
-  //     }
-  //   });
-  // };
+
 
   const renderNav = (type: any) => {
     return (
@@ -297,21 +233,6 @@ const App = () => {
                 <span>{app?.appName}</span>
               </span>
             )}
-{/* 
-            {app.header_App_isShow && (
-              <Dropdown
-                autoClose
-                trigger={
-                  <div style={{ color: app.color, fontSize: app.titleSize,marginRight:app.leftNav_marginTop }}>
-                    <Icon size={app.titleSize} type="ellipsis" />
-                  </div>
-                }
-                triggerType={['click']}
-  
-              >
-                <BlockCard></BlockCard>
-              </Dropdown>
-            )} */}
 
             {app.header_isMenu ? renderNav('hoz') : null}
           </Shell.Branding>
@@ -357,7 +278,6 @@ const App = () => {
             )}
           </Shell.Navigation>
         )}
-
         <Shell.Content>
           <Outlet />
         </Shell.Content>

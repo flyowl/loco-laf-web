@@ -77,6 +77,20 @@ export const low_schema_history_detail = async (id: string) => {
   return res.data
 }
 
+// 获取历史数据的最新数据
+export const sys_menu_init = async () => {
+  const url = `sys_menu_init`;
+
+  const res = await service(
+    {
+      url: url,
+      method: 'get',
+    }
+  )
+
+  return res.data
+}
+
 
 
 // 历史数据保存
@@ -136,9 +150,9 @@ export const low_schema_history_delete = async (id: string) => {
   )
   return res
 }
-// 根据ID获取数据
+// 根据历史ID获取数据
 export const low_schema_history_detail_id = async (id: string) => {
-  const url = `low_schema_history_detail?menu_id=` + id;
+  const url = `low_schema_history_detail?_id=` + id;
   const res = await service(
     {
       url: url,
@@ -147,6 +161,18 @@ export const low_schema_history_detail_id = async (id: string) => {
   )
   return res.data
 }
+// 根据ID获取数据
+export const low_schema_history_menu_id = async (id: string) => {
+  const url = `low_schema_history_detail?id=` + id;
+  const res = await service(
+    {
+      url: url,
+      method: 'get',
+    }
+  )
+  return res.data
+}
+
 
 
 // 根据ID获取数据

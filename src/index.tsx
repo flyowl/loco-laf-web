@@ -1,7 +1,8 @@
 import { init, config } from '@alilc/lowcode-engine';
-import { listBlocks, createBlock, getTreeblock } from './apis/block';
 import registerPlugins from './universal/plugin';
 import './universal/global.scss';
+import DataSourcePanePlugin from 'src/plugins/plugin-datasource-pane';
+
 import { releasepreview } from 'src/universal/utils';
 import { tempListSchema, tempDetailSchema, tempPubileSchema } from 'src/apis/assets';
 import {
@@ -56,6 +57,7 @@ function setupConfig() {
       block: {
         low_schema_history_detail,
         sys_menuList_edit,
+        DataSourcePanePlugin
       },
     });
   // 发布API
@@ -94,8 +96,8 @@ function setupConfig() {
       // simulatorUrl 在当 engine-core.js 同一个父路径下时是不需要配置的！！！
       // 这里因为用的是 alifd cdn，在不同 npm 包，engine-core.js 和 react-simulator-renderer.js 是不同路径
       simulatorUrl: [
-        'https://alifd.alicdn.com/npm/@alilc/lowcode-react-simulator-renderer@1.0.18/dist/css/react-simulator-renderer.css',
-        'https://alifd.alicdn.com/npm/@alilc/lowcode-react-simulator-renderer@1.0.18/dist/js/react-simulator-renderer.js',
+        'https://alifd.alicdn.com/npm/@alilc/lowcode-react-simulator-renderer@1.1.8-beta.4/dist/css/react-simulator-renderer.css',
+        'https://alifd.alicdn.com/npm/@alilc/lowcode-react-simulator-renderer@1.1.8-beta.4/dist/js/react-simulator-renderer.js',
       ],
       requestHandlersMap: {
         fetch: createAxiosFetchHandler(),

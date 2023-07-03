@@ -1,18 +1,16 @@
 import { Button, MenuButton } from '@alifd/next';
-import { ILowCodePluginContext, material, plugins, project,config } from '@alilc/lowcode-engine';
+import { ILowCodePluginContext, material, plugins, project } from '@alilc/lowcode-engine';
 import AliLowCodeEngineExt from '@alilc/lowcode-engine-ext';
 
 import CodeEditor from '@alilc/lowcode-plugin-code-editor';
-import CodeGenPlugin from '@alilc/lowcode-plugin-code-generator';
 import ComponentsPane from '@alilc/lowcode-plugin-components-pane';
 import Inject from '@alilc/lowcode-plugin-inject';
 import SchemaPlugin from '@alilc/lowcode-plugin-schema';
 import UndoRedoPlugin from '@alilc/lowcode-plugin-undo-redo';
 import React from 'react';
-import { getAssetForApp, saveSchema } from 'src/apis/assets';
 import { registerRefProp } from 'src/setters/set-ref-prop';
 import {getQueryString} from 'src/utils/index'
-import { getPageSchema, preview } from './utils';
+import {  preview } from './utils';
 
 import {  low_schemaDetail,low_assetDetail,low_schema_history_save } from 'src/apis/lafapi';
 
@@ -26,7 +24,7 @@ import {  low_schemaDetail,low_assetDetail,low_schema_history_save } from 'src/a
 // import LowcodePluginLocoPluginTemplate from 'lowcode-plugin-loco-plugin-template';
 // import AliLowCodeEngineExt from 'loco-lowcode-engine-ext';
 
-
+import DataSourcePanePlugin from '@alilc/lowcode-plugin-datasource-pane';
 
 import LocoPluginDocuments from 'src/plugins/plugin-public/loco-plugin-documents/src/index';
 import LowcodePluginLocoPluginAi from 'src/plugins/plugin-public/loco-plugin-ai/src/index';
@@ -41,7 +39,7 @@ import LowcodePluginLocoPluginTemplate from 'src/plugins/plugin-public/loco-plug
 import { default as saveAsBlock } from 'src/plugins/action-block';
 import simulatorPaneRef from 'src/plugins/plugin-simulator-size/index';
 import Logo from 'src/plugins/sample-plugins/logo';
-import DataSourcePanePlugin from 'src/plugins/plugin-datasource-pane';
+// import DataSourcePanePlugin from 'src/plugins/plugin-datasource-pane';
 
 
 const { Item } = MenuButton;
@@ -78,7 +76,7 @@ export default async function registerPlugins() {
 
         const assets = await low_assetDetail();
         
-        material.setAssets(JSON.parse(assets.data));
+        material.setAssets(assets.data);
 
 
         //获取默认的数据
@@ -131,20 +129,6 @@ export default async function registerPlugins() {
         project.onSimulatorRendererReady(() => {
           componentsPane?.enable?.();
         });
-        // // 注册页面管理
-        // skeleton.add({
-        //   index: -1,
-        //   area: 'leftArea',
-        //   type: 'PanelDock',
-        //   name: 'pagesPane',
-        //   content: PagesPane,
-        //   contentProps: {},
-        //   props: {
-        //     align: 'top',
-        //     icon: 'kaiwenjianjia',
-        //     description: '页面管理',
-        //   },
-        // });
       },
     };
   };
