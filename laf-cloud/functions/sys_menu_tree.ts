@@ -54,6 +54,22 @@ function buildTree(
 
 export async function main(ctx: FunctionContext) {
 
+const {all = false} = ctx.query
+
+if (all){
+  const { data: data } = await DB
+    .collection(DB_NAME).field({ _id: 1, name: 1, parentId: 1 })
+    .get()
+  console.log(data)
+
+  // const data2 = delTreeData(data, "_id", "p_id", "childrenList")
+  const treeData = buildTree(data, '-1');
+  return Response.ok(treeData);
+
+}
+  
+  
+  
   const { data: data } = await DB
     .collection(DB_NAME).where({ menuType: cmd.neq("2") }).field({ _id: 1, name: 1, parentId: 1 })
     .get()
@@ -61,8 +77,10 @@ export async function main(ctx: FunctionContext) {
 
   // const data2 = delTreeData(data, "_id", "p_id", "childrenList")
   const treeData = buildTree(data, '-1');
-
-
-
   return Response.ok(treeData);
+
+
+
+
+
 }

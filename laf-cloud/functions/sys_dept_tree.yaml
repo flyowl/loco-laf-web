@@ -1,0 +1,6 @@
+name: sys_dept_tree
+methods:
+  - GET
+tags:
+  - system
+  - tree

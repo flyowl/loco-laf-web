@@ -1,4 +1,4 @@
-name: sys_menu
+name: sys_post
 methods:
   - GET
   - POST

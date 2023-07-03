@@ -6,11 +6,16 @@ const DB_NAME = "sys_schema"
 
 
 export default async function (ctx: FunctionContext) {
+  const { data: roles } = await DB.collection("sys_assets")
+    .where({ is_default: 1 })
+    .getOne()
 
   const { id, menu_id, path } = ctx.query
   if (id) {
 
     const data = await SelectDetailSchema(id)
+    data.assets = roles.data
+
     return Response.ok(data)
 
   }
@@ -22,19 +27,23 @@ export default async function (ctx: FunctionContext) {
       .where({ menu_id: data._id })
       .getOne()
 
+    data2.assets = roles.data
 
     return Response.ok(data2)
   }
 
   if (!menu_id || menu_id == "") {
     const data = await selectDefauleSchema()
+    data.assets = roles.data
     return Response.ok(data)
   } else {
     const data = await forMenuSelectDetailSchema(menu_id)
     if (!data) {
       const data = await selectDefauleSchema()
+      data.assets = roles.data
       return Response.ok(data)
     }
+    data.assets = roles.data
     return Response.ok(data)
 
   }

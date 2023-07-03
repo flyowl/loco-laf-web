@@ -1,8 +1,8 @@
-name: sys_menu
+name: low_assets
 methods:
   - GET
   - POST
   - PUT
   - DELETE
 tags:
-  - system
+  - lowcode

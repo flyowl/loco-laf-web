@@ -1,0 +1,5 @@
+name: sys_user_detail
+methods:
+  - GET
+tags:
+  - system

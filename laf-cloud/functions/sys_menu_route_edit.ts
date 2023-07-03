@@ -13,55 +13,16 @@ const DB_NAME = {
 }
 
 export async function main(ctx: FunctionContext) {
-
-  const userId = ctx.user.userId
-
-  const { _id: menuId, type: menuType } = ctx.body
-  const user = await selectOneByUserId(userId)
-  if (!user) {
-    return Response.failed('非法请求', 401)
-  }
-  let roles = await selectUserRoleByUserId(userId)
-  if (!roles) {
-    return Response.failed('暂无权限', 401)
-  }
-  roles = roles.map(
-    (role: Role) => role.roleId
-  )
-  const tree = await selectUserPermissionByRoleIds(roles, menuId, menuType)
+  const tree = await selectUserPermissionByRoleIds()
   return Response.ok(tree)
 }
 
-
-async function selectOneByUserId(userId: string) {
-  const { data: user } = await DB.collection(DB_NAME.SYS_USER)
-    .where({ _id: userId })
-    .getOne()
-  return user
-}
-
-async function selectUserPermissionByRoleIds(roleIds: string[], menuId: string, menuType: string) {
-  if (!menuType) {
-    menuType = '0'
-  }
+async function selectUserPermissionByRoleIds() {
   const cmd = DB.command
-  const { data: rolePermissions } = await DB.collection(DB_NAME.SYS_ROLE_MENU)
-    .where({ roleId: cmd.in(roleIds) })
-    .get()
-  const menuIds = rolePermissions.map(
-    (menu: Menu) => menu.menuId
-  )
   const { data: permissions } = await DB.collection(DB_NAME.SYS_MENU)
-    .where({ menuType: menuType })
+    .where({ menuType: cmd.in(["0", "1"]) })
     .get()
   return buildTree(permissions)
-}
-
-async function selectUserRoleByUserId(userId: string) {
-  const { data: roles } = await DB.collection(DB_NAME.SYS_USER_ROLE)
-    .where({ userId: userId })
-    .get()
-  return roles
 }
 
 function buildTree(permissions: any) {
@@ -83,16 +44,4 @@ function buildTree(permissions: any) {
   return tree;
 }
 
-interface Role {
-  roleId: string
-}
 
-interface Menu {
-  menuId: string
-}
-
-interface UserDetails {
-  userId: string
-  type: string
-  exp: number
-}

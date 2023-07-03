@@ -2,6 +2,7 @@
 公共函数位置
 */
 import Joi from 'joi';
+import cloud from '@lafjs/cloud'
 
 
 // 测试
@@ -36,108 +37,6 @@ export default async function (ctx: FunctionContext) {
     "label": "权限管理",
     "updateTime": 1679993118089,
     "createTime": 1679993118089,
-    "children": [
-      {
-        "_id": "649596b7ed0171a2acb88f99",
-        "name": "角色管理",
-        "permission": "",
-        "path": "/admin/role/index",
-        "parentId": "649596b7ed0171a2acb88f97",
-        "icon": "icon-quanxianguanli",
-        "sortOrder": 1,
-        "keepAlive": "0",
-        "menuType": "0",
-        "createBy": "admin",
-        "updateBy": "admin",
-        "delFlag": "0",
-        "label": "角色管理",
-        "visible": "1",
-        "updateTime": 1679993118089,
-        "createTime": 1679993118089,
-        "__level": 1,
-        "__hidden": true
-      },
-      {
-        "_id": "649596b7ed0171a2acb88fa3",
-        "name": "菜单管理",
-        "permission": "",
-        "path": "/admin/menu/index",
-        "parentId": "649596b7ed0171a2acb88f97",
-        "icon": "icon-caidanguanli",
-        "sortOrder": 2,
-        "keepAlive": "0",
-        "menuType": "0",
-        "createBy": "admin",
-        "updateBy": "admin",
-        "delFlag": "0",
-        "label": "菜单管理",
-        "visible": "1",
-        "updateTime": 1679993118089,
-        "createTime": 1679993118089,
-        "__level": 1,
-        "__hidden": true
-      },
-      {
-        "_id": "649596b7ed0171a2acb88fab",
-        "name": "账号管理",
-        "permission": "",
-        "path": "/admin/user/index",
-        "parentId": "649596b7ed0171a2acb88f97",
-        "icon": "icon-yonghuguanli",
-        "sortOrder": 3,
-        "keepAlive": "0",
-        "menuType": "0",
-        "createBy": "admin",
-        "updateBy": "admin",
-        "delFlag": "0",
-        "label": "账号管理",
-        "visible": "1",
-        "updateTime": 1679993118089,
-        "createTime": 1679993118089,
-        "__level": 1,
-        "__hidden": true
-      },
-      {
-        "_id": "649633b6838574faf8f9007d",
-        "name": "登入",
-        "permission": "",
-        "path": "/user/login",
-        "parentId": "649596b7ed0171a2acb88f97",
-        "icon": "icon-caidanguanli",
-        "sortOrder": 2,
-        "keepAlive": "0",
-        "menuType": "0",
-        "createBy": "admin",
-        "updateBy": "admin",
-        "delFlag": "0",
-        "label": "登入",
-        "visible": "1",
-        "updateTime": 1679993118089,
-        "createTime": 1679993118089,
-        "__level": 1,
-        "__hidden": true
-      },
-      {
-        "_id": "6496385a838574faf8f9007e",
-        "name": "首页",
-        "permission": "",
-        "path": "/welcome",
-        "parentId": "649596b7ed0171a2acb88f97",
-        "icon": "icon-caidanguanli",
-        "sortOrder": 2,
-        "keepAlive": "0",
-        "menuType": "0",
-        "createBy": "admin",
-        "updateBy": "admin",
-        "delFlag": "0",
-        "label": "首页",
-        "visible": "1",
-        "updateTime": 1679993118089,
-        "createTime": 1679993118089,
-        "__level": 1,
-        "__hidden": true
-      }
-    ],
     "__level": 0,
     "__hidden": false
   }
@@ -216,10 +115,64 @@ function findChildren(data, parentId) {
     }));
 }
 
+
+function NowData() {
+  // 获取当前时间的东八区时间
+  const date = new Date();
+  const offset = 8; // 东八区偏移量为 +8
+
+  // 计算当前时间的 UTC 时间，再加上偏移量得到东八区时间
+  const utcTime = date.getTime() + (date.getTimezoneOffset() * 60 * 1000);
+  const beijingTime = new Date(utcTime + (offset * 60 * 60 * 1000));
+  return beijingTime
+}
+function buildTree(permissions: any,panrentData:any = "-1") {
+  let tree = [];
+  for (let i = 0; i < permissions.length; i++) {
+    let arr = [];
+    for (let j = 0; j < permissions.length; j++) {
+      if (permissions[i]._id === permissions[j].parentId) {
+        permissions[i].children = arr;
+        arr.push(permissions[j]);
+      }
+    }
+  }
+  for (let i = 0; i < permissions.length; i++) {
+    if (permissions[i].parentId === panrentData) {
+      tree.push(permissions[i]);
+    }
+  }
+  return tree;
+}
+
+async function authInit() {
+  const db = cloud.database()
+
+  const _ = db.command;
+
+  const { data } = await db
+    .collection("sys_role").field({ menuList: 1 }).get()
+  const authList = {}
+  for (const a of data) {
+    const { data: menu } = await db
+      .collection("sys_menu").where({
+        _id: _.in(a.menuList)
+      }).field({ _id: 0, permission: 1 }).get()
+
+    const permissions = Array.from(new Set(menu.map(item => item.permission)));
+    authList[a._id] = permissions
+  }
+  cloud.shared.set('auth', authList); // 设置一个缓存
+
+}
+
 export {
   validate // 解决单表post数据问题
   , validatePut  //解决单表put数据问题
   , Response // 接口返回
   , findChildren //树结构返回
+  , NowData //获取当前时间
+  , buildTree //树结构
+  , authInit // 权限缓存到内存
 }
 

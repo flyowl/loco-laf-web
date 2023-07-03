@@ -1,0 +1,6 @@
+name: sys_role_choice
+methods:
+  - GET
+tags:
+  - choice
+  - system

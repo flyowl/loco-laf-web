@@ -16,7 +16,12 @@ export default async function (ctx: FunctionContext) {
     // 接口权限校验
 
     // 处理
-    const data = await DB.collection(DB_NAME).where(ctx.query).orderBy("createTime", "desc").get()
+    const data = await DB.collection(DB_NAME).where(ctx.query).orderBy("createTime", "desc").field({
+      menu_id:1,
+      createTime:1,
+      updateTime: 1,
+      status:1,
+    }).get()
 
     return Response.ok(data)
 
