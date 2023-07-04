@@ -26,7 +26,6 @@ const PortalRenderer = (props: PortalRendererProps) => {
 
   // 获取路径数据ß              
   const schemaUrl = useParams()['*']|| "/";
-  console.log("==",schemaUrl)
   // 传去传递的参数
   const { type, setUrl, schema: propSchema } = props;
   // 获取params 的get参数ß

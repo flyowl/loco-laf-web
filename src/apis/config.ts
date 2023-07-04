@@ -13,4 +13,5 @@ export  const TIMEOUT = 30000;
 export const  baseUrl = 'http://qv5aa8.192.168.0.238.nip.io'
 export const dbProxyUrl = '/proxy/app'
 export const environment = 'h5'
-
+// 后台管理页面
+export const admin = '/laf-admin'

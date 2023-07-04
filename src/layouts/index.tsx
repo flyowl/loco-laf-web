@@ -1,5 +1,6 @@
 import { Loading, Nav, Search, Shell, Icon, Dropdown } from '@alifd/next';
 import * as React from 'react';
+import {admin} from 'src/apis/config'
 import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
 import { Logout } from 'src/apis/Login';
 import { allDictionary, list_Route_Menus } from 'src/apis/menu';
@@ -177,7 +178,7 @@ const App = () => {
       if (item.path) {
           return (
             <Item icon={item.icon}>
-              <Link to={item.path}>{item.name} </Link>
+              <Link to={admin+ item.path}>{item.name} </Link>
             </Item>
           );
         }
