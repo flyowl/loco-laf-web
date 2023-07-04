@@ -4,6 +4,8 @@
 import Joi from 'joi';
 import cloud from '@lafjs/cloud'
 
+// 为后面的redis做准备
+const cache = cloud.shared
 
 // 测试
 export default async function (ctx: FunctionContext) {
@@ -126,7 +128,7 @@ function NowData() {
   const beijingTime = new Date(utcTime + (offset * 60 * 60 * 1000));
   return beijingTime
 }
-function buildTree(permissions: any,panrentData:any = "-1") {
+function buildTree(permissions: any, panrentData: any = "-1") {
   let tree = [];
   for (let i = 0; i < permissions.length; i++) {
     let arr = [];
@@ -162,12 +164,13 @@ async function authInit() {
     const permissions = Array.from(new Set(menu.map(item => item.permission)));
     authList[a._id] = permissions
   }
-  cloud.shared.set('auth', authList); // 设置一个缓存
+  cache.set('auth', authList); // 设置一个缓存
 
 }
 
 export {
-  validate // 解决单表post数据问题
+  cache
+  , validate // 解决单表post数据问题
   , validatePut  //解决单表put数据问题
   , Response // 接口返回
   , findChildren //树结构返回

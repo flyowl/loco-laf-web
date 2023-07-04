@@ -1,7 +1,21 @@
 import cloud from '@lafjs/cloud'
-
+import { cache } from '@/public'
 const db = cloud.database()
-const whiteList = ['/low_asset_detail', '/sys_menu_route', '/__init__', '/model', '/sys_user_login', '/low_schema_detail', '/init-collection-data', '/util', '/sys_menu_init']
+const whiteList = [
+  '/low_asset_detail',
+  '/sys_menu_route',
+  '/__init__',
+  '/model',
+  '/sys_user_login',
+  '/low_schema_detail',
+  '/init-collection-data',
+  '/util',
+  '/sys_menu_init',
+  '/low_typed_tree',
+  '/low_block_search',
+  '/low_typed_tree',
+  '/test'
+]
 const authwhiteList = [
   'sys_role_choice:GET',
   'sys_post_choice:GET',
@@ -37,9 +51,15 @@ export async function main(ctx: FunctionContext) {
 
 
 async function authority(userId: string, auth: string) {
+  const data = cache.get("user_" + userId)
+  if (!data) {
+    const { data } = await db.collection('sys_user').doc(userId).get()
+    await cache.set("user_" + userId, data)
+  }
+
   // 用户权限
-  const { data } = await db.collection('sys_user').doc(userId).field({ roleList: 1 }).get()
-  const authList = cloud.shared.get('auth'); // 设置一个缓存
+
+  const authList = cache.get('auth'); // 设置一个缓存
   if (data.roleList.length > 0) {
     for (const roleId of data.roleList) {
       if (authList[roleId].includes(auth)) {

@@ -1,5 +1,5 @@
 import cloud from '@lafjs/cloud'
-import { Response } from '@/public'
+import { Response, cache } from '@/public'
 import { Database } from '@/handleDatabase'
 import { sys_menu } from '@/model'
 const db = new Database("sys_menu")
@@ -11,6 +11,7 @@ export default async function (ctx: FunctionContext) {
     const res = await db.list(parseInt(page), parseInt(pageSize), query, {})
     return Response.ok(res)
   } else if (ctx.method == "POST") {
+    await cache.delete("user_" + userId)
 
     if (ctx.body.path && ctx.body.path != "") {
       const data = await db.get({ "path": ctx.body.path }, {})
@@ -27,6 +28,8 @@ export default async function (ctx: FunctionContext) {
     }
     return Response.failed(String(error))
   } else if (ctx.method == "PUT") {
+    await cache.delete("user_" + userId)
+
     const { _id, ...data } = ctx.body
 
     const [status, error] = await db.put(_id, sys_menu, data, userId)

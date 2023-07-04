@@ -11,7 +11,7 @@ import cloud from "@lafjs/cloud";
 export default async function (ctx: FunctionContext) {
   console.log('Hello World')
 
-  unique('sys_role', { roleCode: 1 })
+  // unique('sys_role', { roleCode: 1 })
 
   // await db.collection("users").createIndex({ username: 1 }, { unique: true })
 
@@ -124,7 +124,9 @@ const sys_assets = {
 }
 
 const sys_typed = {
-
+  ...delault,
+  "name": Joi.string().required(),
+  "parentId": Joi.string().default("")
 }
 
 const sys_role_menu = {
