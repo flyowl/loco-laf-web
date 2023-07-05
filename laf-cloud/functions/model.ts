@@ -78,8 +78,8 @@ const sys_menu = {
   "menuType": Joi.string().required().default("0"),
   "label": Joi.string().default(null).allow(null),
   "visible": Joi.string().default("0"),
-  "menuTyped": Joi.string().default("0").required(),
-
+  "menuTyped": Joi.string().default("0").required(),//所属应用类型
+  "assetsId": Joi.string().allow(null).allow(""),// 所属物料
   ...delault
 }
 
@@ -121,7 +121,7 @@ const sys_block = {
 const sys_assets = {
   "name": Joi.string().required(),
   "version": Joi.string().required().allow(null).allow(""),
-  "data": Joi.string().required(),
+  "data": Joi.object().default({}),
   "is_default": Joi.number().default(0).required()
 }
 

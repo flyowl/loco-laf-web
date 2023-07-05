@@ -1,0 +1,5 @@
+name: low_assets_choice
+methods:
+  - GET
+tags:
+  - choice

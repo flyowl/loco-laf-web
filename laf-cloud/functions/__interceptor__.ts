@@ -16,6 +16,7 @@ const whiteList = [
   '/low_typed_tree',
   '/low_block_search',
   '/low_typed_tree',
+  '/low_assets_choice',
   '/test'
 ]
 const authwhiteList = [

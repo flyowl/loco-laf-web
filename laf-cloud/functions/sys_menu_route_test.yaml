@@ -1,5 +1,0 @@
-name: sys_menu_route_test
-methods:
-  - GET
-tags:
-  - test
