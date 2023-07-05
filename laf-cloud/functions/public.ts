@@ -164,8 +164,8 @@ async function authInit() {
     const permissions = Array.from(new Set(menu.map(item => item.permission)));
     authList[a._id] = permissions
   }
-  cache.set('auth', authList); // 设置一个缓存
-
+  await cache.set('auth', authList); // 设置一个缓存
+  return authList
 }
 
 export {

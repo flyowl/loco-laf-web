@@ -1,11 +1,13 @@
 import cloud from '@lafjs/cloud'
-import { cache } from '@/public'
+import { cache, authInit } from '@/public'
 const db = cloud.database()
 const whiteList = [
   '/low_asset_detail',
   '/sys_menu_route',
   '/__init__',
+  '/get-oss-sts',
   '/model',
+  '/BackupDB',
   '/sys_user_login',
   '/low_schema_detail',
   '/init-collection-data',
@@ -44,29 +46,42 @@ export async function main(ctx: FunctionContext) {
   if (authwhiteList.includes(path)) {
     return true
   }
+  console.log('==')
   // return true
+  const stat = authority(ctx.user.userId, path)
   // 权限校验 
-  return await authority(ctx.user.userId, path)
+  return stat
 }
 
 
 async function authority(userId: string, auth: string) {
+
+  // 用户缓存
   const data = cache.get("user_" + userId)
   if (!data) {
     const { data } = await db.collection('sys_user').doc(userId).get()
     await cache.set("user_" + userId, data)
-  }
-
-  // 用户权限
-
-  const authList = cache.get('auth'); // 设置一个缓存
-  if (data.roleList.length > 0) {
-    for (const roleId of data.roleList) {
-      if (authList[roleId].includes(auth)) {
-        return true
+    // 用户权限
+    const authList = cache.get('auth'); // 设置一个缓存
+    if (data.roleList.length > 0) {
+      for (const roleId of data.roleList) {
+        if (authList[roleId].includes(auth)) {
+          return true
+        }
+      }
+    }
+  }else{
+    // 用户权限
+    const authList = cache.get('auth'); // 设置一个缓存
+    if (data.roleList.length > 0) {
+      for (const roleId of data.roleList) {
+        if (authList[roleId].includes(auth)) {
+          return true
+        }
       }
     }
   }
+
 
   return false
 }

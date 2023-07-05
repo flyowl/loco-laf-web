@@ -78,6 +78,8 @@ const sys_menu = {
   "menuType": Joi.string().required().default("0"),
   "label": Joi.string().default(null).allow(null),
   "visible": Joi.string().default("0"),
+  "menuTyped": Joi.string().default("0").required(),
+
   ...delault
 }
 

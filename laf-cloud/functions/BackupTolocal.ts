@@ -3,7 +3,7 @@
  * bucket 配置为新Laf的存储桶名称
  * credentialsURL 配置为新Laf的获取临时密钥的函数地址
  * 
- * 结果：在新Laf存储桶的BackupDB目录下，会生成info.json和各个数据库的json文件
+ * 结果：直接备份到本地
  */
 import cloud from "@lafjs/cloud";
 import { EJSON } from 'bson'
@@ -11,24 +11,20 @@ import { S3 } from "@aws-sdk/client-s3"
 
 // 如果备份到其他平台，请设置其他平台的数据
 const bucket = `qv5aa8-backup`; // 请替换为你的存储桶名称，填目标迁移laf的存储桶名称，打开读写权限
-const credentialsURL = "http://qv5aa8.192.168.0.238.nip.io/get-oss-sts" // 请替换为你的目标迁移laf的获取临时密钥的函数地址
+
 
 
 export async function main(ctx: FunctionContext) {
-  const { credentials, endpoint, region } = (await cloud.fetch(credentialsURL)).data;
   const BackupDBPath = "BackupDB"
   const s3Client = new S3({
-    endpoint: endpoint,
-    region: region,
+    endpoint: process.env.OSS_EXTERNAL_ENDPOINT,
+    region: process.env.OSS_REGION,
     credentials: {
-      accessKeyId: credentials.AccessKeyId,
-      secretAccessKey: credentials.SecretAccessKey,
-      sessionToken: credentials.SessionToken,
-      expiration: credentials.Expiration,
+      accessKeyId: process.env.OSS_ACCESS_KEY,
+      secretAccessKey: process.env.OSS_ACCESS_SECRET
     },
     forcePathStyle: true,
   })
-
 
   //查询全部集合名
   const collections = await cloud.mongo.db.listCollections().toArray();

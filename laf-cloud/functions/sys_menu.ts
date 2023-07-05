@@ -13,6 +13,10 @@ export default async function (ctx: FunctionContext) {
   } else if (ctx.method == "POST") {
     await cache.delete("user_" + userId)
 
+    if (ctx.body.parentId == null) {
+      delete ctx.body.parentId
+    }
+
     if (ctx.body.path && ctx.body.path != "") {
       const data = await db.get({ "path": ctx.body.path }, {})
 
@@ -21,16 +25,21 @@ export default async function (ctx: FunctionContext) {
         return Response.failed("重复的路径地址")
       }
     }
-
     const [id, error] = await db.post(sys_menu, ctx.body, userId)
     if (id) {
       return Response.ok(id)
     }
+
     return Response.failed(String(error))
   } else if (ctx.method == "PUT") {
+
     await cache.delete("user_" + userId)
 
     const { _id, ...data } = ctx.body
+
+    if (data.parentId == null) {
+      delete data.parentId
+    }
 
     const [status, error] = await db.put(_id, sys_menu, data, userId)
     if (status) {

@@ -1,4 +1,4 @@
-name: BackupDB
+name: RestoreBackup
 methods: []
 tags:
   - manager
