@@ -227,7 +227,7 @@ const App = () => {
         // style={{ border: '1px solid #eee', minHeight: '100vh' }}
       >
         {app.header_isShow && (
-          <Shell.Branding>
+          <Shell.Branding >
             {/* <div className="çç"></div> */}
             {app.header_isName && (
               <span className="nav-name" style={{ color: app.color, fontSize: app.titleSize }}>
@@ -260,7 +260,7 @@ const App = () => {
         )}
 
         {app?.leftNav_isShow && (
-          <Shell.Navigation >
+          <Shell.Navigation  className='nav-menu'>
             {app?.leftNav_Group ? (
               <div style={{ marginTop: app?.leftNav_marginTop }}>
                 <Nav
