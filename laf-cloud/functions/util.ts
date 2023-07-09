@@ -3,13 +3,21 @@ import cloud from '@lafjs/cloud'
 
 export class JwtToken {
 
+
+
   public readonly payload: any
 
   constructor(uid: string, type: string) {
     this.payload = JwtToken.getPayload(uid, type)
   }
 
+
   private static get expire() {
+    const envTime = process.env.user_expire
+    if (envTime){
+      return Math.floor(Date.now() / 1000) + parseInt(envTime)
+    }
+
     return Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 7
   }
 

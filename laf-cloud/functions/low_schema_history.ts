@@ -17,10 +17,10 @@ export default async function (ctx: FunctionContext) {
 
     // 处理
     const data = await DB.collection(DB_NAME).where(ctx.query).orderBy("createTime", "desc").field({
-      menu_id:1,
-      createTime:1,
+      menu_id: 1,
+      createTime: 1,
       updateTime: 1,
-      status:1,
+      status: 1,
     }).get()
 
     return Response.ok(data)
@@ -29,7 +29,6 @@ export default async function (ctx: FunctionContext) {
     // 接口权限校验
     const { menu_id, schema } = ctx.body
     const data = await DB.collection(DB_NAME).add({
-
       schema,
       menu_id,
       createTime: new Date(),
@@ -40,14 +39,8 @@ export default async function (ctx: FunctionContext) {
 
     return Response.ok(data)
 
-  } else if (ctx.method == 'PUT') {
-    // 接口权限校验
-
-    let data = await put(ctx)
-    return Response.ok(data)
-
-
-  } else if (ctx.method == 'DELETE') {
+  }
+  else if (ctx.method == 'DELETE') {
     // 接口权限校验
     const { id } = ctx.query
     if (!id) {
@@ -56,31 +49,6 @@ export default async function (ctx: FunctionContext) {
     const res = await DB.collection(DB_NAME).where({ _id: id }).remove()
     return Response.ok(res)
   }
-
 }
 
 
-async function get(ctx: FunctionContext) {
-  // 业务逻辑
-
-  return { data: 'get' }
-}
-
-async function post(ctx: FunctionContext) {
-
-  const data = await DB.collection(DB_NAME).add({
-
-  })
-  // 业务逻辑
-  return { data: 'post' }
-}
-
-async function put(ctx: FunctionContext) {
-  // 业务逻辑
-  return { data: 'put' }
-}
-
-async function del(ctx: FunctionContext) {
-  // 业务逻辑
-  return { data: 'del' }
-}

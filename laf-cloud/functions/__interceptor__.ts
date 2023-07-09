@@ -3,16 +3,10 @@ import { cache, authInit } from '@/public'
 const db = cloud.database()
 const whiteList = [
   '/low_asset_detail',
-  '/sys_menu_route',
-  '/__init__',
   '/get-oss-sts',
-  '/model',
   '/BackupDB',
   '/sys_user_login',
   '/low_schema_detail',
-  '/init-collection-data',
-  '/util',
-  '/sys_menu_init',
   '/low_typed_tree',
   '/low_block_search',
   '/low_typed_tree',
@@ -25,6 +19,7 @@ const authwhiteList = [
   'low_api_choice:GET',
   'sys_menu_tree:GET',
   'sys_dept_tree:GET',
+  'sys_menu_route:GET',
   'low_schema_history_detail:GET',
   'sys_menu_route_edit:GET',
   'low_schema_history:GET'
