@@ -71,11 +71,9 @@ export default async function registerPlugins() {
     return {
       name: 'editor-init',
       async init() {
-        // const defaultCurrentPage = config.get('currentPage') || 1;
         const { material, project } = ctx;1
-
         const assets = await low_assetDetail();
-        
+      
         material.setAssets(assets.data);
 
 

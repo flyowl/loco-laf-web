@@ -1,8 +1,7 @@
 import { init, config } from '@alilc/lowcode-engine';
 import registerPlugins from './universal/plugin';
 import './universal/global.scss';
-import DataSourcePanePlugin from 'src/plugins/plugin-datasource-pane';
-
+import {loadIncrementalAssets} from 'src/universal/public'
 import { releasepreview } from 'src/universal/utils';
 import { tempListSchema, tempDetailSchema, tempPubileSchema } from 'src/apis/assets';
 import {
@@ -57,7 +56,7 @@ function setupConfig() {
       block: {
         low_schema_history_detail,
         sys_menuList_edit,
-        DataSourcePanePlugin
+        loadIncrementalAssets,
       },
     });
   // 发布API
@@ -82,7 +81,6 @@ function setupConfig() {
 (async function main() {
   setupConfig()
   await registerPlugins();
-
   init(
     document.getElementById('lce-container')!,
     {
@@ -90,6 +88,7 @@ function setupConfig() {
       // locale: 'zh-CN',
       enableCondition: true,
       enableCanvasLock: true,
+      // disableAutoRender:true,
       // 默认绑定变量
       supportVariableGlobally: true,
       appHelper: Apphelp,
@@ -105,4 +104,7 @@ function setupConfig() {
     },
     preference,
   );
+
 })();
+
+

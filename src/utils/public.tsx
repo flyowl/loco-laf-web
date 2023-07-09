@@ -2,6 +2,7 @@
 
 import { Tag } from '@alifd/next';
 import { Dialog,Message } from '@alifd/next';
+import { useRef } from 'react';
 import md5 from 'js-md5';
 import { BASE_URL } from 'src/apis/config';
 import { GetDictionary } from 'src/apis/localStorageInfo';
@@ -65,8 +66,8 @@ export const Apphelp = {
     // 登录
     setUrl:setUrl, //设置url地址 
     setTag:setTag,  //标签设置
-    could:cloud
-
+    could:cloud, //云函数
+    ref:useRef // useRef生成
   },
 };
 
