@@ -1,5 +1,5 @@
 import { config } from '@alilc/lowcode-engine';
-import { getMenuSchema,getSchema,releaseSaveSchema } from 'src/apis/assets';
+// import { getMenuSchema,getSchema,releaseSaveSchema } from 'src/apis/assets';
 
 
 export const preview = () => {
@@ -34,13 +34,13 @@ export const releasepreview = () => {
   
 };
 
-export const getPageSchema = async (page: Number) => {
-  const schema = await getSchema(page);
-  const data = JSON.parse(schema.schema)
-  return data.componentsTree[0];
-};
+// export const getPageSchema = async (page: Number) => {
+//   const schema = await getSchema(page);
+//   const data = JSON.parse(schema.schema)
+//   return data.componentsTree[0];
+// };
 
-export const getPageSchemaData = async (id: Number) => {
-  const schema = await getMenuSchema(id);
-  return {'schema':schema.schema.componentsTree[0],'id':schema.schema_id};
-};
+// export const getPageSchemaData = async (id: Number) => {
+//   const schema = await getMenuSchema(id);
+//   return {'schema':schema.schema.componentsTree[0],'id':schema.schema_id};
+// };

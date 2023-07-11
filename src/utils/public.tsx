@@ -6,7 +6,6 @@ import { useRef } from 'react';
 import md5 from 'js-md5';
 import { BASE_URL } from 'src/apis/config';
 import { GetDictionary } from 'src/apis/localStorageInfo';
-import { LoginApi } from 'src/apis/Login';
 import service, { del, post, put } from 'src/apis/request';
 import { createAxiosFetchHandler } from 'src/plugins/axiosfatchhandler';
 import {cloud, delTreeData, dict, getQueryString, loadjs,loadListJs, openNotification,permission,setUrl,downloadFileURLByIframe } from './index';
@@ -39,8 +38,7 @@ export const Apphelp = {
     //
     'Message':Message,
     md5: md5,
-    // 登入接口
-    LoginApi: LoginApi,
+
     // 树结构渲染
     TreeData: delTreeData,
     //请求参数

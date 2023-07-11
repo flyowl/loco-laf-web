@@ -1,12 +1,9 @@
-import { Loading, Nav, Search, Shell, Icon, Dropdown } from '@alifd/next';
+import { Loading, Nav, Search, Shell } from '@alifd/next';
 import * as React from 'react';
 import {admin} from 'src/apis/config'
-import { Link, Outlet, useNavigate, useParams } from 'react-router-dom';
-import { Logout } from 'src/apis/Login';
-import { allDictionary, list_Route_Menus } from 'src/apis/menu';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Logout } from 'src/apis/lafapi';
 import  { sys_menuList } from 'src/apis/lafapi'
-import { getUserInfo } from 'src/apis/user';
-import { delTreeData } from 'src/utils';
 import Footer from './Footer';
 import HeaderAvatar from './HeaderAvatar';
 import './index.scss';
@@ -140,15 +137,15 @@ const App = () => {
     navigate('/user/login');
   }
   async function startallDictionary() {
-    await allDictionary();
+    // await allDictionary();
   }
 
   async function getUser() {
-    const user = await getUserInfo();
-    if (!user) {
-      return
-    }
-    setUserInfo(user);
+    // const user = await getUserInfo();
+    // if (!user) {
+    //   return
+    // }
+    // setUserInfo(user);
     startallDictionary();
   }
   async function getFiles() {

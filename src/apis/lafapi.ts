@@ -1,6 +1,7 @@
 import service from './request'
 import { config, project } from '@alilc/lowcode-engine';
 import { openNotification } from 'src/utils/index'
+import { ClearToken } from './localStorageInfo';
 
 import { TransformStage } from '@alilc/lowcode-types';
 
@@ -265,5 +266,13 @@ export const low_api = async (query: any) => {
 
 
 
+export const Logout = async () => {
+  const url = `/logout/`;
+  const res = await service.post(url).then((res) => {
+    const str = JSON.stringify(res);
+    ClearToken();
+    openNotification('success', '退出成功');
+  });
+};
 
 

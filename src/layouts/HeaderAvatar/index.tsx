@@ -16,7 +16,7 @@ import {
 import * as React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './index.module.css';
-import { Logout } from 'src/apis/Login';
+import { Logout } from 'src/apis/lafapi';
 import { permission } from 'src/utils/index';
 const { Item } = Menu;
 const { Popup } = Overlay;
