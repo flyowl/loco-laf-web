@@ -2,7 +2,6 @@
 import cloud from '@lafjs/cloud';
 
 import { Response } from '@/global-response'
-import { userDetails } from '@/user-details'
 
 const DB = cloud.database();
 const cmd = DB.command

@@ -1,5 +1,4 @@
 import cloud from '@lafjs/cloud'
-import { userDetails } from '@/user-details'
 
 import { Response } from '@/global-response'
 

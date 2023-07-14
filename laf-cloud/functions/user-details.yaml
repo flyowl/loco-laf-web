@@ -1,5 +1,0 @@
-name: user-details
-methods:
-  - GET
-  - POST
-tags: []
