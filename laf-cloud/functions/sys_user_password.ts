@@ -4,7 +4,7 @@ import { Database } from '@/handleDatabase'
 import { sys_user } from '@/model'
 const db = new Database("sys_user")
 import { PasswordTool } from '@/util'
-
+//管理员专用修改密码
 export default async function (ctx: FunctionContext) {
   const userId = ctx.user.userId
   const { _id, newPassword, newPassword2 } = ctx.body

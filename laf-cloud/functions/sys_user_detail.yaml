@@ -1,5 +1,6 @@
 name: sys_user_detail
 methods:
   - GET
+  - PUT
 tags:
   - system

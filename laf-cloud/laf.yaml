@@ -1,4 +1,4 @@
-name: LOCO低代码
-appid: qv5aa8
-createdAt: 2023-05-11T09:34:45.124Z
-invokeUrl: http://qv5aa8.192.168.0.238.nip.io
+version: 1.0.0
+name: laf-test
+spec:
+  runtime: node
