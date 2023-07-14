@@ -3,7 +3,7 @@ import registerPlugins from './universal/plugin';
 import './universal/global.scss';
 import {loadIncrementalAssets} from 'src/universal/public'
 import { releasepreview } from 'src/universal/utils';
-// import { tempListSchema, tempDetailSchema, tempPubileSchema } from 'src/apis/assets';
+import { tempListSchema, tempDetailSchema, tempPubileSchema } from 'src/apis/lafapi';
 import {
   sys_menuList_edit, low_schema_history_detail, low_schema_history_list, low_schema_history_delete, low_schema_history_detail_id
   , low_typed_tree, low_block_create,
@@ -67,13 +67,13 @@ function setupConfig() {
       low_schema_history_delete
     },
   });
-  // config.set('templateApi', {
-  //   block: {
-  //     tempListSchema,
-  //     tempDetailSchema,
-  //     tempPubileSchema
-  //   },
-  // });
+  config.set('templateApi', {
+    block: {
+      tempListSchema,
+      tempDetailSchema,
+      tempPubileSchema
+    },
+  });
 }
 
 

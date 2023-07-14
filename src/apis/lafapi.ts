@@ -5,6 +5,7 @@ import { ClearToken } from './localStorageInfo';
 
 import { TransformStage } from '@alilc/lowcode-types';
 
+import {GetEditInfo} from './localStorageInfo';
 
 
 
@@ -276,3 +277,63 @@ export const Logout = async () => {
 };
 
 
+
+
+
+
+export const tempListSchema = async (query:any) => {
+
+  let url = `https://lowcode.flyowl.com.cn/api/lowcode/template/Plubiclist/`;  
+  // const cacheurl = GetEditInfo("publicTemplateUrl")
+  // if (cacheurl){
+  //   url = cacheurl+ 'Plubiclist/'
+  // }
+  const res = await service(
+    {
+      url: url,
+      method: 'get',
+      params:query
+
+    }
+  )
+  return res.data;
+};
+
+
+export const tempPubileSchema = async () => {
+  let url = `https://lowcode.flyowl.com.cn/api/system/dictionary/get_dict_template/`;  
+  // let cacheurl = GetEditInfo("publicTempDictUrl")
+  // if (cacheurl){
+  //   url = cacheurl
+  // }
+  const res = await service(
+    {
+      url: url,
+      method: 'get',
+    }
+  )
+  return res.data;
+};
+
+
+
+export const tempDetailSchema = async (id:Number) => {
+  
+  let url = `https://lowcode.flyowl.com.cn/api/lowcode/template/`+id +'/Publicretrieve/';  
+  // let cacheurl = GetEditInfo("publicTemplateUrl")
+
+  // if (cacheurl){
+  //   url = cacheurl+id +'/Publicretrieve/'
+  // }
+  const res = await service(
+    {
+      url: url,
+      method: 'get',
+    }
+  )
+  const data = JSON.parse(res.data.schema)
+  project.removeDocument(project.currentDocument as any);
+  // const schema = project.exportSchema();
+  project.openDocument(data.componentsTree[0]);
+  
+};
