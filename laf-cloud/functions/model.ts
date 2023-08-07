@@ -29,8 +29,8 @@ function unique(databasename: string, query: object) {
 
 // 默认
 const delault = {
-  "createBy": Joi.string().default(null).allow("").allow(null),
-  "updateBy": Joi.string().default("").default(null).allow("").allow(null),
+  "createBy": Joi.string().default(null).allow("").allow(null),//创建人
+  "updateBy": Joi.string().default("").default(null).allow("").allow(null), //更新人
   "createTime": Joi.date().default(NowData()),
   "updateTime": Joi.date().default(NowData()),
   "delFlag": Joi.string().default("0").allow('').allow(null),
@@ -44,20 +44,20 @@ const test = {
   "username": Joi.string().required(),
   "password": Joi.string().default("{sha256}bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a"),
   "phone": Joi.string().default(""),
-  "avatar": Joi.string().default("").allow(null).allow(""),
+  "avatar": Joi.string().default(null).allow(null).allow(""),
   "nickname": Joi.string().default(""),
   "name": Joi.string().default(""),
   "idNumber": Joi.string().default(""),
 }
 
 const sys_user = {
-  "deptId": Joi.string().default(""),
+  "deptId": Joi.string().default("").allow(""),
   "username": Joi.string().required(),
   "password": Joi.string().default("{sha256}bcb15f821479b4d5772bd0ca866c00ad5f926e3580720659cc80d39c9d09802a"),
-  "phone": Joi.string().default(""),
+  "phone": Joi.string().default("").allow(""),
   "avatar": Joi.string().default("").allow(null).allow(""),
   "nickname": Joi.string().default(""),
-  "email": Joi.string().email(),
+  "email": Joi.string().email().default(null).allow(null),
   ...delault,
   "lockFlag": Joi.string().default(""),
   "roleList": Joi.array()
@@ -146,7 +146,15 @@ const sys_dict = {
 
 }
 
+const sys_file = {
+  ...delault,
+  VersionId: Joi.string().required(),
+  url: Joi.string().required(),
+  typed: Joi.number().default(0)
+}
+
 export {
+  delault,//默认数据
   sys_user // 用户信息
   , sys_menu
   , test
@@ -158,5 +166,6 @@ export {
   , sys_typed // 低代码类型管理
   , sys_role_menu // 角色-菜单
   , sys_dict //系统字典
+  , sys_file
 }
 // 系统信息

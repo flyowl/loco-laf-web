@@ -168,6 +168,16 @@ async function authInit() {
   return authList
 }
 
+
+const API_KEY = 'b439bc84f3d64efeae94650407825529';  // Replace with your API key
+
+async function get_location(ip_address) {
+  const response = await cloud.fetch.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${API_KEY}&ip=${ip_address}`);
+  const data = response.data;
+  return data['city'];
+}
+
+
 export {
   cache
   , validate // 解决单表post数据问题
@@ -177,5 +187,6 @@ export {
   , NowData //获取当前时间
   , buildTree //树结构
   , authInit // 权限缓存到内存
+  , get_location //获取IP所在的位置
 }
 

@@ -1,6 +1,6 @@
 import { Response } from '@/global-response'
 import { PasswordTool, JwtToken } from '@/util'
-
+import { NowData, get_location } from '@/public'
 import cloud from '@lafjs/cloud'
 
 const DB = cloud.database()
@@ -62,12 +62,10 @@ export async function main(ctx: FunctionContext) {
   )
   // 签发 token
   // const token = new JwtToken(user._id, 'admin')
-  let exp = Math.floor(Date.now() / 1000) + 86400 * 7
-  console.log(user)
-  let userid = user['_id']
-  console.log(userid)
+  let exp = Math.floor(Date.now() / 1000) + 86400 * 30
   const access_token = cloud.getToken({
-    userId: userid,
+    userId: user._id,
+    username:user.username,
     exp: exp
   })
 
@@ -77,13 +75,34 @@ export async function main(ctx: FunctionContext) {
   //   exp: exp + 10000
   // })
 
-  console.log(ctx.user)
 
   const authorities = []
   for (const item of roles.map((role: Role) => "ROLE_" + role.roleId).concat(permissions)) {
     const authority = { authority: item }
     authorities.push(authority)
   }
+
+  // 添加IP跟浏览器
+  const ip = ctx.headers['x-real-ip']
+  const agent = ctx.headers['user-agent']
+
+  DB.collection('sys_login_log').add({
+    ip:ip,
+    agent:agent,
+    username:user.username,
+    createTime: NowData(),
+    location: await get_location(ctx.headers['x-real-ip'])
+  })
+  
+
+
+  delete user.password
+  delete user.createBy
+  delete user.createTime
+
+
+
+
   const user_info = { ...user, authorities }
   // const data = token.view()
   // data.refresh_token = refresh_token
@@ -93,7 +112,7 @@ export async function main(ctx: FunctionContext) {
     exp: exp,
     username,
     id: user._id,
-    user: user_info
+    user: user_info,
   }
   return Response.ok(res)
 }

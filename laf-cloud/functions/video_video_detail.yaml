@@ -1,0 +1,6 @@
+name: video_video_detail
+methods:
+  - GET
+  - POST
+tags:
+  - video

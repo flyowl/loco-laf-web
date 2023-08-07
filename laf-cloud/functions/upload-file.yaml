@@ -1,0 +1,6 @@
+name: upload-file
+methods:
+  - GET
+  - POST
+tags:
+  - public

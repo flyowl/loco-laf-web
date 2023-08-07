@@ -11,10 +11,12 @@ import { S3 } from "@aws-sdk/client-s3"
 
 // 如果备份到其他平台，请设置其他平台的数据
 const bucket = `gvfh2x-database`; // 请替换为你的存储桶名称，填目标迁移laf的存储桶名称，打开读写权限
-const credentialsURL = "https://gvfh2x-database.site.laf.run/get-oss-sts" // 请替换为你的目标迁移laf的获取临时密钥的函数地址
+const credentialsURL = "https://gvfh2x.laf.run/get-oss-sts" // 请替换为你的目标迁移laf的获取临时密钥的函数地址
 
 
 export async function main(ctx: FunctionContext) {
+
+  
   const { credentials, endpoint, region } = (await cloud.fetch(credentialsURL)).data;
   const BackupDBPath = "BackupDB"
   const s3Client = new S3({
@@ -33,7 +35,7 @@ export async function main(ctx: FunctionContext) {
   //查询全部集合名
   const collections = await cloud.mongo.db.listCollections().toArray();
   const filteredData = collections.filter(
-    (obj) => obj.name !== "__functions__" && obj.name !== "__function_logs__"
+    (obj) => obj.name !== "__functions__" && obj.name !== "__function_logs__" && obj.name !== "__policies__" && obj.name !== "__conf__"
   );
   const DbListName = filteredData.map((obj) => obj.name);
   let dbInfo = {}

@@ -1,0 +1,8 @@
+name: video_video
+methods:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+tags:
+  - video

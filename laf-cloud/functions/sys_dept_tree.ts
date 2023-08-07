@@ -2,7 +2,6 @@ import cloud from '@lafjs/cloud';
 import { Response } from '@/public'
 
 
-
 const DB = cloud.database();
 const cmd = DB.command
 
@@ -38,7 +37,6 @@ function buildTree(
 
 export async function main(ctx: FunctionContext) {
 
-  
   // if (!userId) {
   //   return Response.failed('非法请求', 401)
   // }

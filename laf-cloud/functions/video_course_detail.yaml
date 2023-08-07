@@ -1,0 +1,5 @@
+name: video_course_detail
+methods:
+  - GET
+tags:
+  - video

@@ -1,0 +1,7 @@
+name: video_time_class_detail
+methods:
+  - GET
+  - POST
+  - PUT
+tags:
+  - video

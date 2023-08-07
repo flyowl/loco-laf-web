@@ -32,11 +32,11 @@ class Database<T> {
 
   }
 
-  async get(query: any,field:any={}): Promise<T> {
-    const { data } = await db.collection(this.collectionName).where(query).field(field).get();
+  async get(query: any, field: any = {}): Promise<T> {
+    const { data } = await db.collection(this.collectionName).where(query).field(field).getOne();
     return data ? data as T : null;
   }
-  async list(page: number = 1, pageSize: number = 10, query: object = {}, field: any ={}) {
+  async list(page: number = 1, pageSize: number = 10, query: object = {}, field: any = {}) {
     const { data } = await db.collection(this.collectionName)
       .where(query)
       .skip((page - 1) * pageSize)
@@ -89,6 +89,14 @@ class Database<T> {
       return db.collection(this.collectionName)
     }
   }
+  async db(collectionName: string = null) {
+    if (collectionName) {
+      return db.collection(collectionName)
+    }
+
+    return db.collection(this.collectionName)
+  }
+
 }
 
 export {
