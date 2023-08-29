@@ -293,7 +293,7 @@ const HeaderAvatar = (props: Props) => {
             {/* )} */}
 
             <Item>
-              <Icon size="small" type="account" /> <Link to="/userinfo">个人设置</Link>
+              <Icon size="small" type="account" /> <Link to="/laf-admin/userinfo">个人设置</Link>
             </Item>
             <Item onClick={LogOut}>
               <Icon size="small" type="exit" />

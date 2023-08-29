@@ -21,9 +21,12 @@ ReactDOM.render(
       <Route path="/release/:schemaid/" element={<PortalRenderer type={'releaseparams'} />} />
 
 {/* 后台管理系统 */}
+
       <Route path={admin} element={<App />}>
-        <Route path={admin + '/*'} element={<PortalRenderer type={'defaultmenu'} />} />
-      </Route>
+              <Route path={admin + '/*'} element={<PortalRenderer type={'defaultmenu'} />} />
+            </Route>
+
+ 
 
 {/* 前台管理系统 */}
       <Route path="/" element={<Index />}>
