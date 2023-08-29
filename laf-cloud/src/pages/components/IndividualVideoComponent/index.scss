@@ -1,0 +1,62 @@
+.IndividualVideoComponent__vw {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.IndividualVideoComponent__vw__tx {
+  font-size: 28px;
+  color: #666666;
+}
+.IndividualVideoComponent__vw__vw1 {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+.IndividualVideoComponent__vw__vw1__tx {
+  font-size: 32px;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 10px;
+}
+.IndividualVideoComponent__vw__vw1__vw1 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.IndividualVideoComponent__vw__vw1__vw1__tx {
+  font-size: 24px;
+  color: #717171;
+}
+.IndividualVideoComponent__vw__vw1__vw1__tx1 {
+  font-size: 24px;
+  color: #717171;
+  padding-left: 10px;
+}
+.IndividualVideoComponent__vw__vw1__vw1__tx2 {
+  font-size: 24px;
+  color: #999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.IndividualVideoComponent__vw__vw1__vw2 {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.IndividualVideoComponent__vw__vw1__vw2__tx {
+  font-size: 24px;
+  color: #999999;
+}
+.IndividualVideoComponent__vw__vw1__vw2__tx1 {
+  font-size: 24px;
+  color: #999999;
+  padding-left: 20px;
+}
+.IndividualVideoComponent__vw__vw2 {
+  width: 240px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}

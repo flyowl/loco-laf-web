@@ -1,0 +1,40 @@
+.myStudy__HeaderBar {
+  color: #000000;
+}
+.myStudy__vw {
+  display: flex;
+  flex-direction: row;
+}
+.myStudy__vw__vw {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 26px;
+}
+.myStudy__tx {
+  font-size: 28px;
+  color: #000000;
+}
+.myStudy__vw__vw__vw1 {
+  margin-top: 40px;
+}
+.myStudy__vw__vw__vw1__vw {
+  width: 84px;
+  height: 4px;
+}
+.myStudy__vw1 {
+  background-color: #f3f4ff;
+  display: flex;
+  flex-direction: column;
+}
+.myStudy__vw1__vw {
+  padding-top: 40px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.myStudy__vw1__vw1 {
+  padding-top: 40px;
+  padding: 20px;
+}

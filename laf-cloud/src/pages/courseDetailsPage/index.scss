@@ -1,0 +1,189 @@
+.courseDetailsPage__course_details_page {
+  background-color: #f1f1f1;
+}
+.courseDetailsPage__course_details_page__vw1 {
+  height: 400px;
+}
+.courseDetailsPage__course_details_page__vw1__Video {
+  width: 100%;
+  height: 400px;
+  background-color: #333;
+}
+.courseDetailsPage__course_details_page__vw2 {
+  background-color: #ffffff;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+.courseDetailsPage__course_details_page__vw2__vw {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.courseDetailsPage__course_details_page__vw2__vw__vw {
+  flex: 2;
+}
+.courseDetailsPage__course_details_page__vw2__vw__vw__tx {
+  font-size: 32px;
+  color: #333;
+  font-weight: 600;
+}
+.courseDetailsPage__course_details_page__vw2__vw1 {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.courseDetailsPage__course_details_page__vw2__vw1__tx {
+  font-size: 24px;
+  color: #9a9a9a;
+}
+.courseDetailsPage__course_details_page__vw2__vw1__tx1 {
+  font-size: 24px;
+  color: #9a9a9a;
+  margin-top: 6px;
+  margin-left: 4px;
+}
+.courseDetailsPage__course_details_page__vw2__vw1__tx2 {
+  font-size: 24px;
+  color: #9a9a9a;
+  margin-top: 4px;
+  margin-left: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2 {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw {
+  display: flex;
+  flex-direction: row;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.courseDetailsPage__AtIcon {
+  margin-bottom: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw__tx1 {
+  font-size: 28px;
+  color: #333;
+  margin-top: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.courseDetailsPage__AtIcon_1 {
+  margin-bottom: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw1__tx1 {
+  font-size: 28px;
+  color: #333;
+  margin-top: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.courseDetailsPage__AtIcon_2 {
+  margin-bottom: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw2__tx1 {
+  font-size: 28px;
+  color: #333;
+  margin-top: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+.courseDetailsPage__AtIcon_3 {
+  margin-bottom: 10px;
+}
+.courseDetailsPage__course_details_page__vw2__vw2__vw__vw3__tx1 {
+  font-size: 28px;
+  color: #333;
+  margin-top: 12px;
+}
+.courseDetailsPage__tab {
+  margin-top: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  border-bottom-style: solid;
+  border-bottom-width: 0px;
+}
+.courseDetailsPage__tab__vw {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 26px;
+}
+.courseDetailsPage__tx {
+  font-size: 28px;
+  color: #808080;
+}
+.courseDetailsPage__tab__vw__vw1 {
+  margin-top: 26px;
+}
+.courseDetailsPage__tab__vw__vw1__vw {
+  width: 84px;
+  height: 4px;
+}
+.courseDetailsPage__course_details_page__sv4 {
+  background-color: #ffffff;
+  padding: 20px;
+}
+.courseDetailsPage__course_details_page__sv4__vw {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+.courseDetailsPage__vw {
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+.courseDetailsPage__vw_4 {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 26px;
+}
+.courseDetailsPage__vw_4__vw {
+  padding-left: 18px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.courseDetailsPage__vw_4__vw__Input {
+  background-color: #e6e6e7;
+  border-radius: 30px;
+  padding-left: 20px;
+  height: 60px;
+}
+.courseDetailsPage__vw_4__vw1 {
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.courseDetailsPage__vw_4__vw1__tx {
+  font-size: 28px;
+  color: #840808;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: center;
+}

@@ -1,0 +1,57 @@
+.BroadcastModule__vw {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  background-color: #ffffff;
+}
+.BroadcastModule__vw__vw1 {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.BroadcastModule__vw__vw1__vw {
+  flex-direction: row;
+}
+.BroadcastModule__vw__vw1__vw__vw {
+  display: flex;
+  flex-direction: column;
+}
+.BroadcastModule__vw__vw1__vw__vw__tx {
+  font-size: 28px;
+  color: #333;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.BroadcastModule__vw__vw1__vw__vw__tx1 {
+  font-size: 24px;
+  color: #999696;
+}
+.BroadcastModule__vw__vw1__vw1 {
+  display: flex;
+  flex-direction: row;
+}
+.BroadcastModule__vw__vw1__vw1__vw {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+.BroadcastModule__vw__vw1__vw1__vw__tx {
+  font-size: 24px;
+  color: #999696;
+}
+.BroadcastModule__AtButton {
+  height: 40px;
+  line-height: 40px;
+  background-color: #d3592f;
+  font-size: 24px;
+  min-width: 160px;
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
