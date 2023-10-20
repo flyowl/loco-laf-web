@@ -123,9 +123,11 @@ const HeaderAvatar = (props: Props) => {
      setApp_test(field.getValues())
   }
   const handlesubmit = () =>{
-    document.addEventListener('copy', handleCopy);
-    document.execCommand('copy');
-    Message.success("复制成功");
+    // document.addEventListener('copy', handleCopy);
+    // document.execCommand('copy');
+    window.localStorage.setItem('app_theme', JSON.stringify(field.getValues()))
+
+    Message.success("保存成功");
 
 
 
@@ -248,7 +250,7 @@ const HeaderAvatar = (props: Props) => {
           >
 
             <Button  type="primary" onClick={handlesubmit}>
-              复制
+              保存
             </Button>
           </div>
       </Drawer>

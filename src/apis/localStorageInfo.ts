@@ -26,7 +26,7 @@ const setCookie = (cname: string, cvalue: string, exdays: number) => {
 
 
 export const GetLToken = () => {
-  return localStorage.getItem('Authorization');
+  return localStorage.getItem('Authorization')||"";
 };
 export const SetToken = (info:String) => {
   return localStorage.setItem('Authorization','JWT '+info);

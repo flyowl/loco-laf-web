@@ -76,9 +76,13 @@ const getDevice: IGetDevice = (width) => {
 const App = () => {
   // const url = useParams()['*'] ||'background' ;
 
+const thema =   window.localStorage.getItem('app_theme')
+// debugger
+
   const [device, setDevice] = useState(getDevice(NaN));
   const [files, setFiles] = useState([]);
-  const [app, setApp] = useState({
+  const [app, setApp] = useState(JSON.parse(thema)||
+    {
     "appName": "低代码脚手架",
     // "appWidth": "200px",
     "color": "#5584ff",
@@ -100,7 +104,8 @@ const App = () => {
     "foor_Enterprise": "LOCO低代码",
     "isFoor": true,
     "header_App_isShow": false
-});
+}
+);
 
   const [load, setload] = useState(true);
 
@@ -160,32 +165,54 @@ const App = () => {
 
 
   const renderMenuData = (data: any) => {
-    
+    if (data ==undefined){
+      return
+    }
     return data.map((item: any) => {
       if (item.parentId =="-1") {
-        return (
-          <SubNav key={item._id} label={item.name} icon={item.icon}>
-            {renderMenuData(item.children)}
-          </SubNav>
-        );
-      }
-      if (item.visible == "0"){
-        return
-      }
-      if (item.path) {
+        if (item.menuType  == 0){
           return (
-            <Item icon={item.icon}>
-              <Link to={admin+ item.path}>{item.name} </Link>
-            </Item>
+            <SubNav key={item._id} label={item.name} icon={item.icon}>
+              {renderMenuData(item.children)}
+            </SubNav>
           );
         }
 
+      }
+
         return (
-          <Item icon={item.icon} key={item._id}>
-            {item.name}
-          </Item>
+
+                    <Item icon={item.icon}>
+              <Link to={admin+ item.path}>{item.name} </Link>
+            </Item>
         );
+      
     });
+    // return data.map((item: any) => {
+    //   if (item.parentId =="-1") {
+
+    //     if (item.menuType  == 0){
+    //       return (
+    //         <SubNav key={item._id} label={item.name} icon={item.icon}>
+    //           {renderMenuData(item.children)}
+    //         </SubNav>
+    //       );
+    //     }
+    //   }
+    //   if (item.path) {
+    //       return (
+    //         <Item icon={item.icon}>
+    //           <Link to={admin+ item.path}>{item.name} </Link>
+    //         </Item>
+    //       );
+    //     }
+
+    //     return (
+    //       <Item icon={item.icon} key={item._id}>
+    //         {item.name}
+    //       </Item>
+    //     );
+    // });
   };
 
 

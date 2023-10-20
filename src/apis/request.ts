@@ -11,7 +11,12 @@ import { insertChild } from '@alilc/lowcode-designer';
 const service = axios.create({
   baseURL: BASE_URL,
   timeout: TIMEOUT,
+  // withCredentials: false, // 设置是否携带凭证
+
 });
+
+// axios.defaults.withCredentials = false
+
 const url = new URL(window.location.href)
 
 
@@ -36,7 +41,7 @@ const codeMessage: Record<number, string> = {
 
 export function getErrorMessage(msg: any) {
   if (msg === '身份认证信息未提供。') {
-    window.location.href = '/user/login?redirect=' +url.pathname;
+     window.location.href = '/user/login?redirect=' +url.pathname;
     localStorage.setItem("redirect",url.pathname)
   }
 
@@ -45,20 +50,14 @@ export function getErrorMessage(msg: any) {
   }
   if (typeof msg === 'object') {
     if (msg.code === 'token_not_valid') {
-      // util.cookies.remove('token')
-      // util.cookies.remove('uuid')
-      // router.push({ path: '/login' })
-      window.location.href = '/user/login?redirect=' +url.pathname;
+     window.location.href = '/user/login?redirect=' +url.pathname;
       localStorage.setItem("redirect",url.pathname)
 
       // router.go(0)
       return '登录超时，请重新登录！';
     }
     if (msg.code === 'user_not_found') {
-      // util.cookies.remove('token')
-      // util.cookies.remove('uuid')
-      // router.push({ path: '/login' })
-      window.location.href = '/user/login?redirect=' +url.pathname;
+     window.location.href = '/user/login?redirect=' +url.pathname;
       localStorage.setItem("redirect",url.pathname)
 
       // router.go(0)
@@ -83,6 +82,7 @@ service.interceptors.request.use(
       // 'Access-Control-Allow-Headers':'token',
       ...config.headers,
     };
+    
     return config;
   },
   (err) => {
@@ -101,19 +101,13 @@ service.interceptors.response.use(
     } else {
       // 有 code 代表这是一个后端接口 可以进行进一步的判断
       switch (redata.code) {
-        case 2000:
+        case 200:
           // [ 示例 ] code === 2000 代表没有错误
           // TODO 可能结果还需要code和msg进行后续处理，所以去掉.data返回全部结果
           // return dataAxios.data
           return res.data;
         case 401:
-          // openNotification('error',  `${redata.msg}`);
-          // TODO 置换token 未完善
-          // util.cookies.remove('token')
-          // util.cookies.remove('uuid')
-          // util.cookies.remove('refresh')s
-          // router.push({ path: '/login' })
-          // errorCreate(`${getErrorMessage(dataAxios.msg)}`)
+
           window.location.href = '/user/login?redirect=' +url.pathname;
           localStorage.setItem("redirect",url.pathname)
 
@@ -133,8 +127,6 @@ service.interceptors.response.use(
           break;
         case 400:
           openNotification('error', `${redata.msg}`);
-
-          // errorCreate(`${dataAxios.msg}`)
           break;
         default:
           openNotification('error', `${redata.msg}`);
@@ -176,7 +168,7 @@ export function post(url: any, params: any,mess=true) {
   return new Promise(function (resolve, reject) {
     //做一些异步操作
     const res = service.post(url, params).then((res: any) => {
-      if (res.code == 2000) {
+      if (res.code == 200) {
         if (mess){openNotification('success', '创建成功');}
         resolve(res);
       } else {
@@ -191,7 +183,7 @@ export async function put(url: any, params: any,mess=true) {
   return new Promise(function (resolve, reject) {
     //做一些异步操作
     const res =  service.put(url, params).then((res: any) => {
-      if (res.code == 2000) {
+      if (res.code == 200) {
         if (mess){openNotification('success', '更新成功');}
 
         
@@ -214,9 +206,9 @@ export function del(url: any,mess=true) {
       content: '请确认是否删除...',
       onOk: () => {
         const res = service.delete(url).then((res: any) => {
-          if (res.code == 2000) {
+          if (res.code == 200) {
             resolve(res)
-            if (mess){openNotification('error', res.msg)}
+            if (mess){openNotification('success', res.msg)}
           } else {
             reject(res)
             if (mess){openNotification('error', res.msg)}

@@ -13,7 +13,7 @@ import {GetEditInfo} from './localStorageInfo';
 // 通过菜单ID获取schema
 // {menu_id:xxx,id:xxx}
 export const low_schemaDetail = async (data: any) => {
-  const url = `low_schema_detail`;
+  const url = `/lowcode/low_schema_detail`;
   // const res = await service.get(url);
   const res = await service(
     {
@@ -35,7 +35,7 @@ export const low_schemaDetail = async (data: any) => {
 
 // 通过ID获取schema
 export const low_assetDetail = async () => {
-  const url = `low_asset_detail`;
+  const url = `/lowcode/low_asset_detail`;
   const res = await service.get(url);
   // if (res.code) {
   //   console.error('list block failed: ', res);
@@ -46,7 +46,7 @@ export const low_assetDetail = async () => {
 
 // 通过ID获取schema
 export const sys_menuList = async () => {
-  const url = `sys_menu_route`;
+  const url = `/system/menu/sys_menu_route`;
   const res = await service.get(url);
   return res.data
 
@@ -54,7 +54,7 @@ export const sys_menuList = async () => {
 
 // 通过ID获取schema
 export const sys_menuList_edit = async () => {
-  const url = `sys_menu_route_edit`;
+  const url = `/system/menu/sys_menu_route_edit`;
   const res = await service.get(url);
   return res.data
 
@@ -63,7 +63,7 @@ export const sys_menuList_edit = async () => {
 
 // 获取历史数据的最新数据
 export const low_schema_history_detail = async (id: string) => {
-  const url = `low_schema_history_detail`;
+  const url = `/lowcode/low_schema_history_detail`;
 
   const res = await service(
     {
@@ -81,7 +81,7 @@ export const low_schema_history_detail = async (id: string) => {
 
 // 获取历史数据的最新数据
 export const sys_menu_init = async () => {
-  const url = `sys_menu_init`;
+  const url = `/system/menu/sys_menu_init`;
 
   const res = await service(
     {
@@ -104,7 +104,7 @@ export const low_schema_history_save = async () => {
   if (!data.schemaid) {
     return
   }
-  const url = `low_schema_history`;
+  const url = `/lowcode/low_schema_history`;
 
   const res = await service.post(
     url,
@@ -113,7 +113,7 @@ export const low_schema_history_save = async () => {
       'menu_id': data.menuid
     }
   )
-  if (res.code == 2000) {
+  if (res.code == 200) {
     config.set('editordata', {
       type: 'menu',
       menuid: data.menuid,
@@ -128,7 +128,7 @@ export const low_schema_history_save = async () => {
 
 // 获取历史数据的最新数据
 export const low_schema_history_list = async () => {
-  const url = `low_schema_history`;
+  const url = `/lowcode/low_schema_history`;
   const data = config.get('editordata');
 
   const res = await service(
@@ -143,7 +143,7 @@ export const low_schema_history_list = async () => {
 
 // 获取历史数据的最新数据
 export const low_schema_history_delete = async (id: string) => {
-  const url = `low_schema_history?id=` + id;
+  const url = `/lowcode/low_schema_history?id=` + id;
   const res = await service(
     {
       url: url,
@@ -154,7 +154,7 @@ export const low_schema_history_delete = async (id: string) => {
 }
 // 根据历史ID获取数据
 export const low_schema_history_detail_id = async (id: string) => {
-  const url = `low_schema_history_detail?_id=` + id;
+  const url = `/lowcode/low_schema_history_detail?_id=` + id;
   const res = await service(
     {
       url: url,
@@ -165,7 +165,7 @@ export const low_schema_history_detail_id = async (id: string) => {
 }
 // 根据ID获取数据
 export const low_schema_history_menu_id = async (id: string) => {
-  const url = `low_schema_history_detail?id=` + id;
+  const url = `/lowcode/low_schema_history_detail?id=` + id;
   const res = await service(
     {
       url: url,
@@ -179,7 +179,7 @@ export const low_schema_history_menu_id = async (id: string) => {
 
 // 根据ID获取数据
 export const low_typed_tree = async () => {
-  const url = 'low_typed_tree';
+  const url = '/lowcode/low_typed_tree';
   const res = await service(
     {
       url: url,
@@ -191,7 +191,7 @@ export const low_typed_tree = async () => {
 
 // 根据ID获取数据
 export const low_block_create = async (data: any) => {
-  const url = 'low_block';
+  const url = '/lowcode/low_block';
   const res = await service.post(url, data
   )
   return res.data
@@ -202,7 +202,7 @@ export const low_block_create = async (data: any) => {
 export const low_schema_release = async () => {
   const data = config.get('editordata');
 
-  const url = `low_schema_release`;
+  const url = `/lowcode/low_schema_release`;
 
   const res = await service.post(
     url,
@@ -211,7 +211,7 @@ export const low_schema_release = async () => {
       'schema_history_id': data.schemaid
     }
   )
-  if (res.code == 2000) {
+  if (res.code == 200) {
     openNotification('success', "发布成功")
   }
 };
@@ -220,7 +220,7 @@ export const low_schema_release = async () => {
 
 
 export const low_api_choice = async (query: any) => {
-  const url = `low_api_choice`;
+  const url = `/lowcode/low_api_choice`;
 
   const res = await service(
     {
@@ -234,7 +234,7 @@ export const low_api_choice = async (query: any) => {
 
 
 export const low_api_create = async (query: any) => {
-  const url = `low_api`;
+  const url = `/lowcode/low_api`;
   const res = await service.post(
     url,
     query
@@ -244,7 +244,7 @@ export const low_api_create = async (query: any) => {
 
 
 export const low_block_search = async (query: any) => {
-  const url = `low_block_search`;
+  const url = `/lowcode/low_block_search`;
 
   const res = await service(
     {
@@ -258,7 +258,7 @@ export const low_block_search = async (query: any) => {
 
 
 export const low_api = async (query: any) => {
-  const url = `low_api`;
+  const url = `/lowcode/low_api`;
 
   const res = await service.post(url, query
   )

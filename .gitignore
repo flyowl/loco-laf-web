@@ -1,11 +1,8 @@
 # Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+
 
 # Other files and folders
-.settings/
+
 
 build
 node_modules
@@ -21,4 +18,3 @@ node_modules
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 
-src/plugins/plugin-public
