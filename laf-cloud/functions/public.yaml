@@ -1,5 +1,0 @@
-name: public
-methods:
-  - GET
-tags:
-  - public

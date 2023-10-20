@@ -1,6 +1,0 @@
-name: sys_user_choice
-methods:
-  - GET
-tags:
-  - system
-  - choice

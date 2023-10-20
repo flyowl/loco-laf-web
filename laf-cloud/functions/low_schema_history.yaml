@@ -1,8 +1,0 @@
-name: low_schema_history
-methods:
-  - GET
-  - POST
-  - PUT
-  - DELETE
-tags:
-  - lowcode

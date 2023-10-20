@@ -1,5 +1,0 @@
-name: low_block_search
-methods:
-  - GET
-tags:
-  - lowcode

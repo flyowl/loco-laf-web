@@ -1,6 +1,0 @@
-name: sys_post_choice
-methods:
-  - GET
-tags:
-  - choice
-  - system

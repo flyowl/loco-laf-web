@@ -1,5 +1,0 @@
-name: sys_menu_route
-methods:
-  - GET
-tags:
-  - system

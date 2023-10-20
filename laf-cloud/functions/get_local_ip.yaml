@@ -1,5 +1,0 @@
-name: get_local_ip
-methods:
-  - GET
-tags:
-  - plugin

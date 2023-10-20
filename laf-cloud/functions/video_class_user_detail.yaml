@@ -1,6 +1,0 @@
-name: video_class_user_detail
-methods:
-  - GET
-  - POST
-tags:
-  - video

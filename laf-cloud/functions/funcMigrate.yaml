@@ -1,5 +1,0 @@
-name: funcMigrate
-methods:
-  - GET
-tags:
-  - manager

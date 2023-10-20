@@ -1,5 +1,0 @@
-name: video_auth
-methods:
-  - GET
-tags:
-  - video

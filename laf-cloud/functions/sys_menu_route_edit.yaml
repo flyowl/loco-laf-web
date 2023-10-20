@@ -1,5 +1,0 @@
-name: sys_menu_route_edit
-methods:
-  - GET
-tags:
-  - lowcode

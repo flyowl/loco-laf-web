@@ -1,6 +1,0 @@
-name: sys_menu_tree
-methods:
-  - GET
-tags:
-  - system
-  - tree

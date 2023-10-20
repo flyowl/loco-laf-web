@@ -1,5 +1,0 @@
-name: wx_login
-methods:
-  - POST
-tags:
-  - system

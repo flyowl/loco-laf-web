@@ -1,5 +1,0 @@
-name: low_schema_release
-methods:
-  - POST
-tags:
-  - lowcode

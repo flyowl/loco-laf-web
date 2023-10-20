@@ -1,5 +1,0 @@
-name: sys_role_get_menuid
-methods:
-  - GET
-tags:
-  - system

@@ -1,6 +1,0 @@
-name: video_learning_time_detail
-methods:
-  - GET
-  - POST
-tags:
-  - video
