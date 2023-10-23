@@ -64,7 +64,7 @@ loco之上的平台开发？
 #### 区块
 根据自己设计的页面，直接保存为区块，方便其他页面调用
 
- ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104029.jpg)
+ ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-103942.jpg)
 
  
 
