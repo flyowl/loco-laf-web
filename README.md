@@ -35,6 +35,60 @@ vscode 安装插件 laf-assistant
 
 ```
 
+## 功能概述
+
+loco 可以做什么？
+
+loco的基础功能？
+
+loco之上的平台开发？
+
+### 可以做什么
+
+可以做erp，oa系统，电商网站，大屏报表，也可以做官网等等，几乎能做到市面上90%的web系统，未来我们还将开发app物料，能做到80%的app应用快速开发。
+
+### 基础功能
+
+#### 前端积木化开发
+
+通过拖拽生成前端页面，轻量级编写js以及css，从而生成完整的页面。后端根据前端界面不同的物料定制好不同的函数方便调用。
+
+![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-103942.jpg)
+ 
+
+#### 模块物料化，区块化
+根据产品类型定制不同的物料以及区块。完全适配项目需求。完全根据公司需求，开发不同的物料，且物料开发非常简单，初级工程师完全可上手。
+
+ ![1.jpg]()
+
+#### 区块
+根据自己设计的页面，直接保存为区块，方便其他页面调用
+
+ ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104029.jpg)
+
+ 
+
+#### 物料
+通过自定义开发物料，实现模块级别复用。
+
+  ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104045.jpg)
+
+
+#### 模板市场
+利用公共模板，快速开发需要的页面
+
+  ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104232.jpg)
+
+
+#### 物料市场
+通过公共物料，快速嵌入物料到原有系统
+
+ ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104333.jpg)
+
+ #### 历史功能
+通过历史功能，可以快速回退到之前的版本
+
+ ![1.jpg](https://gitee.com/tianyadg/loco-low-code-backend/raw/master-public/img/Jietu20230324-104127.jpg)
 
 ## 如何贡献
 Pull Request:
