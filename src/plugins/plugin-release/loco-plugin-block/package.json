@@ -1,0 +1,39 @@
+{
+  "name": "lowcode-plugin-loco-plugin-block",
+  "author": "xiangli",
+  "version": "1.0.0",
+  "description": "loco-plugin-block",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "README": "README.md",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "build-scripts start --config build.js",
+    "build": "build-scripts build --config build.js",
+    "prepublishOnly": "npm run build",
+    "beta": "npm publish --tag beta",
+    "pub": "npm publish"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@alifd/next": "^1.26.15",
+    "@alilc/lowcode-engine": "^1.1.5",
+    "@alilc/lowcode-types": "^1.1.1"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "devDependencies": {
+    "@alib/build-scripts": "^0.1.32",
+    "@alilc/build-plugin-alt": "^1.0.0",
+    "@types/react": "^16.0.3",
+    "build-plugin-fusion": "^0.1.19"
+  },
+  "license": "MIT",
+  "lcMeta": {
+    "pluginName": "LowcodePluginLocoPluginBlock"
+  }
+}

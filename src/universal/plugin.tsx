@@ -26,13 +26,13 @@ import {  low_schemaDetail,low_assetDetail,low_schema_history_save } from 'src/a
 
 import DataSourcePanePlugin from '@alilc/lowcode-plugin-datasource-pane';
 
-import LocoPluginDocuments from 'src/plugins/plugin-public/loco-plugin-documents/src/index';
-import LowcodePluginLocoPluginAi from 'src/plugins/plugin-public/loco-plugin-ai/src/index';
-import LowcodePluginLocoPluginRelease from 'src/plugins/plugin-public/loco-plugin-release/src/index';
-import LowcodePluginLocoPluginHistory from 'src/plugins/plugin-public/loco-plugin-history/src/index';
-import LowcodePluginLocoPluginBlock from 'src/plugins/plugin-public/loco-plugin-block/src/index';
-import LowcodePluginLocoPluginPages from 'src/plugins/plugin-public/loco-plugin-pages/src/index';
-import LowcodePluginLocoPluginTemplate from 'src/plugins/plugin-public/loco-plugin-template/src/index';
+import LocoPluginDocuments from 'src/plugins/plugin-release/loco-plugin-documents/src/index';
+import LowcodePluginLocoPluginAi from 'src/plugins/plugin-release/loco-plugin-ai/src/index';
+import LowcodePluginLocoPluginRelease from 'src/plugins/plugin-release/loco-plugin-release/src/index';
+import LowcodePluginLocoPluginHistory from 'src/plugins/plugin-release/loco-plugin-history/src/index';
+import LowcodePluginLocoPluginBlock from 'src/plugins/plugin-release/loco-plugin-block/src/index';
+import LowcodePluginLocoPluginPages from 'src/plugins/plugin-release/loco-plugin-pages/src/index';
+import LowcodePluginLocoPluginTemplate from 'src/plugins/plugin-release/loco-plugin-template/src/index';
 
 
 // 调试代码使用

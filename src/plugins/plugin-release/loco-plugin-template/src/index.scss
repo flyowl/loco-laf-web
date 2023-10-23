@@ -1,0 +1,59 @@
+.edit-block-card {
+    width:  98%;
+    min-height: 400px;
+    height: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+  
+  
+  }
+  
+  .edit-block-card .block-load{
+    width:  100%;
+    min-height: 250px;
+  }
+  .edit-block-card .block-card-col{
+    padding: 5px;
+    border-radius: 5px;
+    cursor:pointer;
+    background-color: #f0f0f0be;
+  
+    &:hover {
+      box-shadow: 0 8px 24px 0 rgba(142, 142, 147, .2);
+      transform: translateY(-3px);
+      transition: all 0.6s ease 0.2s;
+    }
+  
+  }
+  
+  .edit-block-card img{
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+  }
+  
+  .edit-block-card p{
+    margin-top: 0px;
+    font-size: 16px;
+    text-align: center;
+    font-family: PingFangSC-Medium;
+    line-height: 24px;
+
+  }
+  
+  .edit-block-card span{
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2;
+    color: #747677;
+    font-size: 12px;
+  }
+
+  
+  .edit-page{
+    text-align:center;
+    margin-top: 10px;
+  }
