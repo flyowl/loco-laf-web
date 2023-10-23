@@ -1,0 +1,4 @@
+name: tools/manager/RestoreBackup
+methods: []
+tags:
+  - manager

@@ -1,0 +1,8 @@
+name: system/dept/sys_dept
+methods:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+tags:
+  - system

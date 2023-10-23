@@ -1,0 +1,4 @@
+name: system/user/sys_user_login
+methods:
+  - POST
+tags: []

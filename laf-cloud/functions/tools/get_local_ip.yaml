@@ -1,0 +1,5 @@
+name: tools/get_local_ip
+methods:
+  - GET
+tags:
+  - plugin

@@ -1,0 +1,8 @@
+name: system/post/sys_post
+methods:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+tags:
+  - system

@@ -1,0 +1,5 @@
+name: lowcode/low_schema_history_detail
+methods:
+  - GET
+tags:
+  - lowcode

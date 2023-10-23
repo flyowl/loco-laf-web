@@ -1,0 +1,6 @@
+name: tools/manager/get-oss-sts
+methods:
+  - GET
+  - POST
+tags:
+  - manager

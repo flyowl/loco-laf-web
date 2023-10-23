@@ -1,0 +1,5 @@
+name: system/role/sys_role_detail
+methods:
+  - GET
+tags:
+  - lowcode

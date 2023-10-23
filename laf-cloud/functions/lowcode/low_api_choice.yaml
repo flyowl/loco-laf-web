@@ -1,0 +1,6 @@
+name: lowcode/low_api_choice
+methods:
+  - GET
+tags:
+  - lowcode
+  - choice

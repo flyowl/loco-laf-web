@@ -2,9 +2,3 @@ version: 1.0.0
 name: 生产
 spec:
   runtime: node
-  dependencies:
-    joi: 17.9.2
-    "@alicloud/vod20170321": 2.0.7
-    svg-captcha: 1.4.0
-    "@alicloud/pop-core": 1.7.13
-    "@alicloud/dysmsapi20170525": 2.0.24

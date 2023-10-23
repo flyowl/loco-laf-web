@@ -1,0 +1,5 @@
+name: tools/manager/funcMigrate
+methods:
+  - GET
+tags:
+  - manager

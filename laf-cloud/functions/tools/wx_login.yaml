@@ -1,0 +1,5 @@
+name: tools/wx_login
+methods:
+  - POST
+tags:
+  - system

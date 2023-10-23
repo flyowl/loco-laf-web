@@ -1,0 +1,4 @@
+name: system/is_login
+methods:
+  - GET
+tags: []

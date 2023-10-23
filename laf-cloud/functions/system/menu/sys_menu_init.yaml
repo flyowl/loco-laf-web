@@ -1,0 +1,5 @@
+name: system/menu/sys_menu_init
+methods:
+  - GET
+tags:
+  - system

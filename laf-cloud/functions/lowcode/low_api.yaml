@@ -1,0 +1,8 @@
+name: lowcode/low_api
+methods:
+  - GET
+  - POST
+  - PUT
+  - DELETE
+tags:
+  - lowcode
