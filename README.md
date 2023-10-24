@@ -3,7 +3,7 @@
 
 
 https://locolaf.flyowl.com.cn:4443/
-账号：admin，密码：12345678
+账号：demo，密码：12345678
 
 ## 准备
 
