@@ -66,7 +66,7 @@ const sys_menu = {
   "menuType": Joi.string().required().default("0"),
   "label": Joi.string().default(null).allow(null),
   "visible": Joi.string().default("0"),
-  "menuTyped": Joi.string().default("0").required(),//所属应用类型
+  "menuTyped": Joi.string().default("0"),//所属应用类型
   "assetsId": Joi.string().allow(null).allow(""),// 所属物料
   "schema": Joi.string().default(null).allow(null),// 所属物料
   ...delault

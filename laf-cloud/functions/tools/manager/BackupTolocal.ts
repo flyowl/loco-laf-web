@@ -10,8 +10,7 @@ import { EJSON } from 'bson'
 import { S3 } from "@aws-sdk/client-s3"
 import { NowData } from '@/utils/public'
 // 如果备份到其他平台，请设置其他平台的数据
-const bucket = `qv5aa8-backup`; // 请替换为你的存储桶名称，填目标迁移laf的存储桶名称，打开读写权限
-
+const bucket = 'wzvafh-storage'
 
 
 export async function main(ctx: FunctionContext) {

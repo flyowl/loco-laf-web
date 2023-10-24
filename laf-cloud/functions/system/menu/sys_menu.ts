@@ -1,7 +1,8 @@
 import cloud from '@lafjs/cloud'
-import { Response, cache } from '@/utils/public'
+import { Response, cache, authInit } from '@/utils/public'
 import { Database } from '@/handleDatabase'
 import { sys_menu } from '@/model'
+
 const db = new Database("sys_menu")
 
 export default async function (ctx: FunctionContext) {
@@ -33,6 +34,7 @@ export default async function (ctx: FunctionContext) {
   } else if (ctx.method == "PUT") {
 
     await cache.delete("user_" + userId)
+    await authInit()
 
     const { _id, ...data } = ctx.body
 
@@ -44,6 +46,7 @@ export default async function (ctx: FunctionContext) {
 
     const [status, error] = await db.put(_id, sys_menu, data, userId)
     if (status) {
+      await authInit()
       return Response.ok(status)
     }
     return Response.failed(String(error))

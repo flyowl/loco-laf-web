@@ -7,6 +7,7 @@ const whiteList = [
   '/tools/send-code',
   '/tools/BackupDB',
   '/test/test',
+  '/tools/manager/BackupTolocal',
   "/utils/public",
   '/utils/initsql', //初始化使用
   '/handleDatabase',
@@ -45,13 +46,10 @@ const authwhiteList = {
 export async function main(ctx: FunctionContext) {
 
   // return true
-
   // 白名单，直接放行
   if (whiteList.includes(ctx.request.path)) {
     return true
   }
-
-
 
   if (!ctx.user) {
     ctx.response.send({ code: 401, message: 'token 过期，请重新登入' })
@@ -63,40 +61,40 @@ export async function main(ctx: FunctionContext) {
     }
   }
 
-  //演示模式
-  // if (ctx.request.method != "GET") {
-  //   return false
-  // }
-  
   const path = ctx.request.path.replace('/', '') + ":" + ctx.request.method
   const stat = authority(ctx.user.userId, path)
   // 权限校验 
   return stat
-
-
-
 }
 
 
 async function authority(userId: string, auth: string) {
   // 用户缓存
   let data = cache.get("user_" + userId)
-  if (!data) {
-    const { data } = await db.collection('sys_user').doc(userId).get()
-    await cache.set("user_" + userId, data)
+  if (!data || data == undefined) {
+    const { data: user } = await db.collection('sys_user').doc(userId).get()
+    cache.set("user_" + userId, user)
+    data = user
     // 用户权限
   }
+
+  //管理员全放开
   if (data?.username == 'admin') {
     return true
   }
 
   const authList = cache.get('auth'); // 设置一个缓存
-  if (data?.roleList.length > 0) {
-    for (const roleId of data?.roleList) {
-      if (authList[roleId].includes(auth)) {
-        return true
-      }
+
+    if (data?.roleList?.length > 0) {
+        for (const roleId of data?.roleList) {
+          if (authList[roleId].includes(auth)) {
+            return true
+          }
+        }
+      
+
     }
-  }
+
+
   return false
 }

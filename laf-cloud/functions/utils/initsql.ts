@@ -8,7 +8,7 @@ const db = cloud.database()
 
 const sys_user_data = {
   "username": "admin",
-  "password": "{sha256}b280631e867c2041f9b4782951157d71930b123a80ea45793a357e9d72760d8f",
+  "password": "{sha256}ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f",
   "nickname": "超级管理员",
   "email": "laf@laf.run",
   "createBy": "admin",
@@ -105,13 +105,15 @@ export default async function (ctx: FunctionContext) {
   } else {
     console.log("已存在数据库sys_post")
   }
-  db = new Database('sys_menu')
+  db = new Database('sys_role')
   if (!db.isExists()) {
-    const d = await db.post(sys_menu, sys_menu_data)
+    const d = await db.post(sys_role, sys_post_data)
     console.log(d)
   } else {
-    console.log("已存在数据库sys_menu")
+    console.log("已存在数据库sys_role")
   }
+
+  
 }
 
 

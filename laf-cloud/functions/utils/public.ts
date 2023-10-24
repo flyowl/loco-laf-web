@@ -47,9 +47,7 @@ export default async function (ctx: FunctionContext) {
 
   const { error, value } = await validateData(test, test_b);
   if (error) {
-    console.log(error.message)
   } else {
-    console.log(value)
     return value
   }
 
