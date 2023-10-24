@@ -3,7 +3,7 @@
 
 
 https://locolaf.flyowl.com.cn:4443/
-账号：admin，密码：123456
+账号：admin，密码：12345678
 
 ## 准备
 
@@ -24,6 +24,12 @@ vscode 安装插件 laf-assistant
 
 在 laf-cloud 目录下初始化 laf app
 发布所有 function 到 laf 线上
+
+### 数据库导入
+
+找到函数并执行，导入账号等等 utils/initsql
+找到函数并执行，导入菜单以及页面数据 tools/manager/localRestore
+
 
 ## NGINX部署配置
 
