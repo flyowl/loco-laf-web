@@ -2,7 +2,7 @@
 这是一个 基于 laf 和 低代码 的前后端一体化的后台管理系统，是一个轻量级的在线开发系统。
 
 
-https://locolaf.flyowl.com.cn:4443/
+https://locolaf.flyowl.com.cn
 账号：demo，密码：12345678
 
 ## 准备
